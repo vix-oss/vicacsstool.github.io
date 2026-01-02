@@ -27,7 +27,7 @@
 
 ## 使用方法
 
-1. 打開 [tool.html](tool.html)
+1. 打開 [texture.html](texture.html)
 2. 從下拉菜單選擇想要自訂的功能模組
 3. 點擊「+ 新增功能」按鈕
 4. 調整各項參數（顏色、大小、位置等）
@@ -61,7 +61,7 @@ README.md          - 本介紹文件
 
 ## 開發者
 
-此工具由 vix-oss 開發和維護
+此工具由 vicaloser(YT:@vicaloser) 開發和維護
 
 ---
 
