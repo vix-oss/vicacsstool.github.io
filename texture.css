@@ -1,0 +1,1238 @@
+.EverythingMenuContainer .EverythingMenu {
+  box-shadow: 0 0 15px rgb(19 244 255 / 60%), inset 0 0 25px rgb(0 139 181 / 90%) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(198deg, #37d7ff4d 0%, #05215580 75%) !important;
+  border: 1px solid #23ccffa6 !important;
+}
+
+.EverythingMenuContainer .EverythingMenu .EverythingMenuTabList {
+  border: 0px solid #00000000 !important;
+  box-shadow: 0 0 #00000000 !important;
+  background-color: #0000002d !important;
+  border-radius: 1rem !important;
+}
+
+.EverythingMenuTab.EverythingMenuTabActive {
+  background-color: #00000000 !important;
+  border: 0px solid #00000000 !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6) !important;
+  background-image: url('https://iili.io/Ko0dOPa.png') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  filter: brightness(1) !important;
+}
+
+.EverythingMenuTab {
+  filter: brightness(0.7); 
+  border: 0px solid #00000000 !important; 
+}
+
+.SettingsMenu {
+  background-color: #00000000 !important;
+  border: 0px solid #00000000 !important;
+  box-shadow: 0 0 #00000000 !important;
+  border-radius: 1rem !important;
+}
+
+.SettingsMenuLeft {
+  background-color: #00000000 !important;
+  border: 1px solid #23b3d3;
+  border-radius: 1rem;
+  background-image: linear-gradient(120deg, #34baff36 0%, #00234785 75%) !important;
+}
+
+.Menu .MenuSideBar .MenuSideBarBody .MenuSideBarBodyTab.ActiveMenuSideBarBodyTab {
+  background-color: #06262e48 !important;
+  box-shadow: inset 0 0 15px rgba(10, 175, 204, 0.534) !important;
+  border: 0px solid #00000000 !important;
+  background-image: url("https://iili.io/FgpPaNs.gif") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  filter: brightness(1) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  color: #fff !important;
+}
+
+.Menu .MenuSideBar .MenuSideBarBody .MenuSideBarBodyTab {
+  border: 0px solid #00000000 !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  filter: brightness(0.75);
+  text-shadow: 0 0 BLACK !important;
+}
+
+.SettingsMenuRightInner .SettingBox {
+  box-shadow: 0 0 15px rgb(0 28 37 / 60%) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;
+}
+
+.CharCustomisation {
+  box-shadow: 0 0 15px rgb(19 244 255 / 60%), inset 0 0 25px rgb(0 139 181 / 90%) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(198deg, #37d7ff4d 0%, #05215580 75%) !important;
+  border: 1px solid #23ccffa6 !important;  
+}
+
+.UpdateLogPopupOuter .UpdateLogPopup .UpdateLogPopupInner {
+  background-color: #2e707f75 !important;
+}
+
+.CharCustomisation .CharCustomisationBody .CharCustomisationPreview .CharCustomisationPreviewCanvas {
+  border: 0px solid #00000000 !important;
+  box-shadow: 0 0 rgba(0, 0, 0, 0) !important;
+  border-radius: 1rem !important;
+}
+
+.CharCustomisationBody .CharCustomisationBodyInner .CharCustomisPartSelectorWrapper .CharCustomPartWrapper {
+  box-shadow: 0 0 15px rgb(19 244 255 / 60%), inset 0 0 25px rgb(0 139 181 / 90%) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(198deg, #37d7ff4d 0%, #05215580 75%) !important;
+  border: 1px solid #23ccffa6 !important;  
+}
+
+.CharCustomisationBody .CharCustomisationBodyHeader {
+  gap: 999rem !important;
+  padding: 0rem !important;
+}
+
+.LogoLoaderInner {
+  border-radius: 10rem !important;
+  box-sizing: border-box;
+  position: absolute;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-image: url('https://iili.io/FgLZgft.gif') !important;
+}
+
+.LogoLoader.LogoLoaderLoading .LogoLoaderInner {
+  filter: invert(1) !important;
+}
+
+.InGameHeaderContainer .InGameHeader .InGameHeaderLogo {
+  background-size: 0rem !important;
+  opacity: 0 !important;
+  width: 0rem !important;
+  gap: 0rem !important;
+
+}
+
+.InGameHeaderContainer .InGameHeader .InGameHeaderSpacer {
+  background-color: #00000000 !important;
+  flex-shrink: 0 !important;
+  height: 0% !important;
+  opacity: 0 !important;
+  width: 0rem !important;
+  margin: 0rem !important;
+}
+
+.InGameHeaderContainer .InGameHeader {
+  background-color: #00000000 !important;
+  border: 0px solid #00000000 !important;
+  gap: .25rem !important;
+  padding: 0 0.5rem 0 0rem !important;
+}
+
+.LikeButton {
+  border-radius: 0.7rem !important;
+  background-image: linear-gradient(198deg, #ff32329c 0%, #7800008c 75% 75%) !important;
+  border: 1px solid #ff232352 !important;
+}
+
+.Chat {
+  background-color: #0000003a !important;
+  border-radius: 1rem !important;
+  max-height: 17rem !important;
+  padding: 0.15rem !important;
+}
+
+.Chat .ChatMessages .MessageWrapper {
+  background-color: #00000000 !important;
+  font-size: 0.8rem;
+  color: #ffd51a !important;
+  padding: .12rem .4rem !important;
+  opacity: 0.5;
+}
+
+.MessageWrapper.ChatMsgSelectWrapper {
+  opacity: 1 !important;
+  font-size: .9rem !important;
+  color: rgba(255, 255, 255, 0.918) !important;
+  background-color: #00000036 !important;
+  border-radius: 0.5rem !important;
+  padding: 0.2rem !important;
+}
+
+.Chat .ChatMessages {
+  gap: 0rem !important;
+}
+
+.UiRequests .UiRequestContainer .UiRequest .UiRequestInner {
+  background-image: linear-gradient(174deg, #0fa9e999 0%, #00375f63 75%) !important;
+  border: 1px solid #23ccffa6 !important;  
+  border-radius: 1rem !important;
+  box-shadow: 0 0 15px rgba(19, 243, 255, 0.356), inset 0 0 25px rgba(0, 139, 181, 0.521) !important;
+  background-color: #00000000 !important;
+}
+
+.FpsWrapperDiv {
+  background-color: #00000000 !important;
+}
+
+.CoordinateUI {
+  background-color: #0000002e !important;
+  border-radius: 1rem !important;
+}
+
+.SocialBarContainer .SocialBarOuter .SocialBar .CondensedSocialBarInner .CondensedSectionsContainer .CondensedSections {
+  box-shadow: 0 0 15px rgba(19, 243, 255, 0.356), inset 0 0 25px rgba(0, 139, 181, 0.521) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(198deg, #37d7ff23 0%, #05215538 75%) !important;
+  border: 1px solid #23ccff52 !important;      
+}
+
+.CondensedSection.CondensedSectionOnlineFriends {
+  background-color: #00000000 !important;
+}
+
+.SocialBarContainer .SocialBarOuter .SocialBar .CondensedSocialBarInner .CondensedSectionsContainer .CondensedSections .CondensedSection.CondensedSectionFriendRequests {
+  background-color: #00000000 !important;
+}
+
+.ScaleOnHover {
+  text-shadow: none !important;
+}
+
+.IconKeyboardButtonHelper {
+  color: #00000000 !important;
+  font-size: 0% !important;
+  width: 0rem !important;
+}
+
+.FullyFancyText {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.856) !important;  
+}
+
+.BloxdForm .SectionBody {
+  border: 0px solid #00000000 !important;
+}
+
+.HomeHeader .HomeHeaderInner .HomeHeaderTop .TitleContainer .LogoContainer {
+  padding: 0rem !important;
+  bottom: 5px !important;
+}
+
+.TextInput.SmallTextBold.ShopItemUserInputText {
+  box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;  
+}
+
+.TextInput.SmallTextBold {
+  background-color: #00000000 !important;
+}
+
+
+.JoinLobbyInput {
+  box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #132e6457 0%, #00000057 75%) !important;
+  border: 1px solid #23ccffa6 !important;  
+}
+
+.GameInformation .GameInformationInner .LobbyCollection .RecentlyPlayedLobbies .RecentlyPlayedLobby {
+  background-color: #1f9aff4b !important;
+}
+
+.InviteLinkInner {
+  box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;    
+}
+
+.GameInformation .GameInformationInner .GameInformationTop .GameInformationTopBackgroundContainer .GameInformationTopBackgroundColor {
+  background-color: #00739d4d !important;
+}
+
+.Loader .LoaderOuter {
+  border-radius: 100% !;
+}
+
+.LabeledInput .TextInput, .LabeledInput input {
+  box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;     
+}
+
+.LabeledInput .OtherInput {
+  box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;       
+}
+
+.SchematicListContainer {
+  box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;         
+}
+
+.SchematicThumbnail {
+  box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important;
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;    
+}
+
+.SchematicName {
+  background-color: #39498000 !important;
+}
+
+.LabeledInput .Label {
+  background-color: #00000000 !important;
+  border: 0px solid #00000000 !important;  
+  text-shadow: 0 0 10px rgb(255, 255, 255) !important;
+}
+
+.CloseGameInformation.CloseGameInformationSticky {
+  background-color: #00000000 !important;
+}
+
+.GameInformation .GameInformationInner .LobbyCollection .CustomLobbyList .CustomLobbyListInner .CustomLobby.CreateCustomLobby {
+  border-radius: 1rem !important;
+  background-color: #0000002a !important;
+  border: 0px solid #00000000 !important;
+}
+
+.CreateCustomLobbyPopup .CreateCustomLobby {
+  padding: .6rem !important;
+}
+
+.PopupNotification .PopupNotificationWrapper .PopupNotificationExitButton {
+  top: 0.75rem !important;
+  right: 0.75rem !important;
+}
+
+.CustomGameChip {
+  border: #00000000 !important;
+  border-radius: 1rem !important;
+}
+
+.LogoLoader .LogoLoaderInner .row .cell {
+  aspect-ratio: 0/0 !important;
+  width: 0% !important;
+  filter: opacity(0) !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+}
+
+.LoadingOverlay .LoadingOverlayDividerContainer .LoadingOverlayDivider {
+  background-color: #00000000 !important;
+  height: 0% !important;
+  margin: 0rem !important;
+  width: 0rem !important;
+}
+
+.LoadingOverlay .LoadingOverlayLeft .LoadingOverlayLeftInner {
+  width: 0rem !important;
+  opacity: 0 !important;
+}
+
+.GameInformation .GameInformationInner .LobbyCollection .CustomLobbyList .CustomLobbyListInner .CustomLobby {
+  border-radius: 1rem !important;
+}
+
+.LogoLoader.LogoLoaderLoading .LogoLoaderOuter {
+  background-image: linear-gradient(347deg, #25deffc4 0%, #15181a80 70%) !important;
+  border: 0px solid #00000000 !important;
+  box-shadow: 0 0 25px rgb(0 243 255), inset 0 0 25px rgba(22, 201, 255, 0.9) !important;
+  border-radius: 15rem !important;
+}
+
+.LoadingOverlay .LoadingOverlayLeft {
+  width: 0rem !important;
+}
+
+.SettingsAdInner {
+  width: 0rem !important;
+}
+
+.LoadingOverlay .LoadingOverlayRight .LoadingOverlayRightAdBannerContainer {
+  height: 0% !important;
+}
+
+.HomeHeader .HomeHeaderInner .HomeHeaderTop .HomeHeaderRightContainer .HomeHeaderRight {
+  background-color: #00000000 !important;
+  box-shadow: inset 0 0 25px rgb(22 201 255 / 24%) !important;
+  border-radius: 1rem !important;
+  background-image: linear-gradient(174deg, #00aad5e0 0%, #05215580 75%) !important;
+}
+
+.TexturePackCategory .TexturePackList {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 7px !important;
+}
+
+.TexturePackCategory .TexturePack {
+  border: 2px solid #00a1ff4f !important;
+  box-shadow: 0 0 BLACK !important;
+  aspect-ratio: 5 / 1 !important;
+  border-radius: 1rem !important;
+}
+
+.CenteredDiv .SelectGameGridBackgroundContainer {
+  filter: opacity(0) !important;
+}
+
+.HomePageBackgroundContainer {
+  filter: opacity(0) !important;
+}
+
+.HomePageInner {
+  background-image: url('https://iili.io/FUpAoCB.jpg') !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.HomeHeader .HomeHeaderInner .HomeHeaderTop .TitleContainer .Title {
+  color: #00000000 !important;
+  background-image: url(https://iili.io/FgDj7Cx.png) !important;
+  background-repeat: no-repeat !important;
+  width: 20rem !important;
+  line-height: 5.5rem !important;
+  background-size: 20rem !important;
+  text-shadow: 0 0 #00000000 !important;
+}
+
+.HomePageActionBar .HomePagePartyBar {
+  background-color: #063e5f5e !important;
+  box-shadow: inset 0 0 25px rgb(67 211 255 / 24%) !important;
+}
+
+.HomePageActionBar .ActionShortcutBar .ActionShortcutBarElement {
+  background-color: #063e5f5e !important;
+  box-shadow: inset 0 0 25px rgba(219, 180, 7, 0.329) !important;
+}
+
+.HomePageActionBar .ActionShortcutBar .ActionShortcutBarElement {
+  background-color: #063e5f5e !important;
+  box-shadow: inset 0 0 25px rgba(219, 180, 7, 0.329) !important;
+}
+
+.HomePageActionBar .ActionShortcutBar .ActionShortcutBarElement {
+  background-color: #063e5f5e !important;
+  box-shadow: inset 0 0 25px rgba(219, 180, 7, 0.329) !important;
+}
+
+.HomePageActionBar .ActionShortcutBar .ActionShortcutBarElement {
+  background-color: #063e5f5e !important;
+  box-shadow: inset 0 0 25px rgba(219, 180, 7, 0.329) !important;
+}
+
+/* Friends List */
+
+.SocialBarContainer .SocialBarOuter .SocialBar .SocialBarInner .SocialBarFooter {
+  background-color: #00000000 !important;
+  box-shadow: inset 0 0 25px rgb(22 201 255 / 24%) !important;
+  border-radius: 1rem !important;
+  background-image: linear-gradient(174deg, #0eb2db71 0%, #05215580 75%) !important;
+}
+
+.SocialBarContainer .SocialBarOuter .SocialBar .SocialBarDivider {
+  background-color: #00000000 !important;
+  height: 0% !important;
+  margin-left: 0% !important;
+  opacity: 0 !important;
+  width: 0% !important;
+}
+
+.SocialBarContainer .SocialBarOuter .SocialBar .SocialBarInner .SocialBarFooter .AddFriendBody .PlayerSearch .PlayerSearchInput {
+  background-color: #00000000 !important;
+  box-shadow: 0 0 25px rgb(0 119 125 / 45%) !important;
+  border-radius: 1rem !important;
+  background-image: linear-gradient(174deg, #00aad5e0 0%, #05215580 75%) !important;
+  border: 1px solid #229ec3ec !important;
+}
+
+.SocialBarContainer .SocialBarOuter .SocialBar .SocialBarInner .SocialBarHeader {
+  background-color: #00000000 !important;
+}
+
+.SocialBarContainer .SocialBarOuter .SocialBar .SocialBarInner .SocialBarHeader .PartyJoinCreatePreview {
+  font-size: 0rem !important;
+}
+
+.SocialBarContainer .SocialBarOuter.Expanded .SocialBar .SocialBarInner .SocialBarHeader {
+  background-color: #00000000 !important;
+  box-shadow: inset 0 0 25px rgb(22 201 255 / 24%) !important;
+  border-radius: 1rem !important;
+  background-image: linear-gradient(174deg, #0eb2db71 0%, #05215580 75%) !important;
+}
+
+.ProfilePreview.IsOffline .ProfilePreviewRight {
+  opacity: 1 !important;
+}
+
+.ProfilePreview .ProfilePreviewRight {
+  background-color: #08355aa6 !important;
+  border-radius: .5rem !important;
+  margin: 1px !important;
+}
+
+.FloatingActions {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 0.05px solid #20cbe9ec !important;
+  background-image: linear-gradient(166deg, #15afffc9 0%, #003a7596 75%) !important;
+}
+
+.FloatingActions .FloatingAction {
+  background-color: #00000000 !important;
+}
+
+.SocialBarContainer .SocialBarOuter .SocialBar .SocialBarInner .SocialBarBody {
+  background-color: #00000000 !important;
+  box-shadow: inset 0 0 25px rgb(22 201 255 / 24%) !important;
+  border-radius: 1rem !important;
+  background-image: linear-gradient(174deg, #0eb2db71 0%, #05215580 75%) !important;
+}
+
+/* */
+
+.AdBannerContainer .AdBanner {
+  background-color: #00000000 !important;
+  border: 0px solid #00000000 !important;
+  box-shadow: 0rem 0rem 0 #00000000 !important;
+}
+
+.AccountSettings .SetAccountNameDiv .EnterAccNameDivWrapper .EnterName {
+  background-color: #394980;
+  box-shadow: 0 0 15px rgb(0 28 37 / 60%) !important;
+  border-radius: 1rem !important;
+  background-color: #0000005c !important;
+  background-image: linear-gradient(174deg, #00b4ff66 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;
+}
+
+.BloxdDropdownControl {
+  box-shadow: 0 0 15px rgb(0 28 37 / 60%) !important;
+  border-radius: 1rem !important;
+  background-color: #0000005c !important;
+  background-image: linear-gradient(174deg, #00b4ff66 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;
+}
+
+.ControlsContainer .ControlRow {
+  box-shadow: 0 0 15px rgb(0 28 37 / 60%) !important;
+  border-radius: 1rem !important;
+  background-color: #0000005c !important;
+  background-image: linear-gradient(174deg, #00b4ff66 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;
+}
+
+.ControlsContainer .ControlRow .ControlRowWarning {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #20dcffb8 0%, #00c4ff38 75%) !important;
+  border-radius: 1rem !important;
+  color: #fff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6) !important;
+}
+
+.ControlsContainer .ControlRow .ControlRowInner .ControlBindingsContainer .ControlBinding {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #20dcffb8 0%, #00c4ff38 75%) !important;
+  border-radius: .6rem !important;
+  border: 1px solid #00c4ffb3 !important;
+}
+
+.ControlsContainer .ControlRow .ControlRowInner .ControlBindingsContainer .ControlBindingAddInput .InputContainer input {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #00b4ff66 0%, #00000038 75%) !important;
+  border: 1px solid #00c4ffb3 !important;
+}
+
+.BloxdDropdownMenu {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #00869fe6 0%, #0e3c5d96 75%) !important;
+  border: 1px solid #00c4ffb3 !important;
+  border-radius: 1rem !important;
+}
+
+.Dropdown-option.is-selected {
+  background-color: #e0f5ff23 !important;
+  color: #fff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6) !important;
+}
+
+.HomeHeader .HomeHeaderInner .HomeHeaderTop .HomeHeaderAccount .PlayerNamePreview {
+  background-color: #00000000 !important;
+  box-shadow: inset 0 0 25px rgb(22 201 255 / 24%) !important;
+  border-radius: 1rem !important;
+  background-image: linear-gradient(174deg, #0eb2db71 0%, #05215580 75%) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid #00c4ffb3 !important;
+}
+
+.TexturePackCategory .CustomTexturePackContainer {
+  background-color: #00000000 !important;
+  box-shadow: 0 0 25px rgb(16 149 215 / 78%) !important;
+  border-radius: 1rem !important;
+  background-image: linear-gradient(188deg, #12bee9a6 0%, #05215580 75%) !important;
+  border: 1px solid #229ec3ec !important;
+}
+
+.TexturePackCategory .CustomTexturePackContainer .CustomTextureWarning {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(177deg, #31e8ffe0 0%, #00288380 75%) !important;
+}
+
+.UpdateLogsContainer .UpdateLog {
+  background-color: #00000000 !important;
+  box-shadow: 0 0 25px rgb(16 149 215 / 78%) !important;
+  border-radius: 1rem !important;
+  background-image: linear-gradient(174deg, #13b5dd73 0%, #13347054 75%) !important;
+  border: 1px solid #229ec3ec !important;
+}
+
+.GameCardContainer .AvailableGame .AvailableGameInner .AvailableGameTextWrapper .AvailableGameText {
+  background-color: #00416180 !important;
+}
+
+
+.TexurePack.Selected.Custom {
+  opacity: 0 !important;
+  height: 0% !important;
+}
+
+.MiddleScreenPopupBackground .MiddleScreenPopup {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 1px solid #24b8c7 !important;
+  background-image: linear-gradient(174deg, #13b5dd73 0%, #13347054 75%) !important;  
+}
+
+.InviteLinkBox {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 1px solid #24b8c7 !important;
+  background-image: linear-gradient(156deg, #0bb4c9bd 0%, #001f5796 75%) !important;   
+}
+
+.LobbyLeaderboardContainer .LobbyLeaderboard table tbody tr td .LobbyLeaderboardValueBg {
+  opacity: 0.6 !important;
+}
+
+.LobbyLeaderboardMenu .LobbyLeaderboardContainer .LobbyLeaderboard {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 0px solid #00000000 !important;
+  background-image: linear-gradient(156deg, #0bb3c963 0%, #001e573f 75%) !important;
+}
+
+.LobbyLeaderboardMenu .LobbyLeaderboardContainer .LobbyLeaderboard table thead th {
+  background-color: #00000000;
+  opacity: 0.4 !important;
+}
+
+.LobbyLeaderboardMenu .LobbyLeaderboardContainer .LobbyLeaderboard table tbody tr td:nth-of-type(2n) .LobbyLeaderboardValueBg {
+  background-color: #00000000;
+  opacity: 0.6 !important;
+}
+
+.LobbyLeaderboardMenu .LobbyLeaderboardContainer .LobbyLeaderboard table tbody tr td .LobbyLeaderboardValueBg {
+  background-color: #00000000;
+  opacity: 0.6 !important;
+}
+
+.AdBannerContainer .SuperRankAdContainer {
+  position: unset !important;
+  width: 0rem !important;
+  height: 0rem !important;
+  transform: scale(0) !important;
+}
+
+/* BUTTONS */
+
+.NewButton {
+  border-radius: 1rem !important;
+  background-color: #00000000;
+  border: 1px solid #24b8c7;
+  background-image: linear-gradient(174deg, #13b5dd73 0%, #13347054 75%);
+  box-shadow: 0 0 black;
+}
+
+.BlueButton {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 1px solid #24b8c7 !important;
+  background-image: linear-gradient(174deg, #13b5dd73 0%, #13347054 75%) !important;
+}
+
+.RedButton {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 1px solid #b41c1c !important;
+  background-image: linear-gradient(174deg, #dd131373 0%, #58101054 75%) !important;
+}
+
+.JoinPartyAction .JoinPartyButton {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 1px solid #561cb4 !important;
+  background-image: linear-gradient(174deg, #6b13dd73 0%, #58101054 75%) !important;
+}
+
+.CreatePartyButton, .PartyJoinLocation {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 1px solid #561cb4 !important;
+  background-image: linear-gradient(174deg, #6b13dd73 0%, #58101054 75%) !important;  
+}
+
+.NewButton.PurpleButton.CreatePartyButton {
+  background-color: #00000000 !important;
+  border: 1px solid #561cb4;
+  background-image: linear-gradient(174deg, #6b13dd73 0%, #58101054 75%);    
+}
+
+.GoldButton {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 1px solid #c59225 !important;
+  background-image: linear-gradient(174deg, #ffde4ab6 0%, #966d1685 75%) !important;
+}
+
+.NewButton.BlueButton.DoCraftButton.DisabledNewButton {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  border: 1px solid #757575c2 !important;
+  background-image: linear-gradient(174deg, #a5a5a573 0%, #47474754 75%) !important;
+}
+
+.SocialBarContainer .SocialBarOuter .SocialBar .SocialBarInner .SocialBarFooter .AddFriendBody .PlayerSearch .PlayerSearchInputButton {
+  border-radius: .5rem !important;
+  background-color: #00000000;
+  background-image: linear-gradient(174deg, #00aad5e0 0%, #05215580 75%) !important;
+  margin: 2px;
+  border: 1px solid #23b9ffa6;
+  box-shadow: 0 0 25px rgb(0 119 125 / 45%) !important;
+}
+
+.NewButton .ButtonBottomBorder {
+  background-color: #0000003b !important;
+}
+
+.NewButton .ButtonTopBorder {
+  background-color: #c7c7c71a !important;
+}
+
+.TexturePackCategory .CustomTexturePackContainer .CustomTextureFolderUpload .CustomTextureFolderUploadIcon.Active {
+  color: #ffffff !important;
+  opacity: 0;
+  height: 3.5rem !important;
+  width: 3.5rem !important;
+  background-size: contain !important;
+}
+
+.TexturePackCategory .CustomTexturePackContainer .CustomTextureFolderUpload .CustomTextureFolderUploadIcon {
+  font-size: 0rem !important;
+  background-image: url("https://iili.io/FpiImQ4.png") !important;
+  background-repeat: no-repeat !important;
+  text-shadow: 0 0 0 #ffffff00;
+  opacity: 1;
+  box-shadow: 0 0 25px rgb(0 0 0), inset 0 0 25px rgb(0 0 0 / 90%) !important;
+  animation: shake 3s infinite !important;
+}
+
+.JoinPartyAction .JoinPartyHashtag {
+  background-color: #00000000 !important;
+  border: 0px solid #00000000 !important;
+  width: 0px !important;
+  font-size: 0rem !important;
+}
+
+.JoinPartyInput {
+  border-radius: 1rem !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important;
+  border: 1px solid #23ccffa6 !important;
+  color: #fff !important;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.644) !important;
+}
+
+.CreativeItemSlotsWrapper .CreateItemSlotsScrollable .CreativeScrollButtons .CreativeScrollButton {
+  border-radius: 1rem !important;
+  background-color: #00000000;
+  border: 1px solid #24b8c7;
+  background-image: linear-gradient(174deg, #13b5dd73 0%, #13347054 75%);  
+}
+
+.LoginButtonContainer .LoginButton {
+  border-radius: 1rem !important;
+  border: 1px solid #00000000 !important;
+}
+
+/* Hotbar */
+
+.HotBarContainer .HotBar .HotBarGameItemsContainer .InvenItem.Selected {
+  background-color: #00000000 !important;
+  outline: 0px solid #00000000 !important;
+  background-image: url(https://iili.io/Fr1lnLv.png) !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  image-rendering: pixelated !important;
+  outline: 0px solid #00000000 !important;
+}
+
+.HotBarContainer .HotBar .HotBarGameItemsContainer .InvenItem {
+  background-image: url(https://iili.io/Fr1pO7a.png);
+  border: 0rem solid #00000000 !important;
+  border-radius: 0 !important;
+  height: calc(4rem - 10px);
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  image-rendering: pixelated !important;
+  outline: 0px solid #00000000 !important;
+  width: calc(4rem - 10px);
+  background-color: #00000000;
+}
+
+.HotBarItem {
+  background-image: url(https://iili.io/Fr1pO7a.png);
+  border: 0rem solid #00000000 !important;
+  border-radius: 0 !important;
+  height: calc(3.5rem - 10px);
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  image-rendering: pixelated !important;
+  outline: 0px solid #00000000 !important;
+  width: calc(3.5rem - 10px);
+  background-color: #00000000 !important;
+  top: 0.7rem !important;
+  transform: scale(1.2);
+}
+
+.HotBarItem.ButtonHotBarItem {
+  font-size: 1.5rem !important;
+}
+
+.HotBarButtonPrompt {
+    font-size: 0rem !important;
+}
+
+.HotbarItemNumber {
+  font-size: 0rem !important;
+  position: absolute;
+  text-align: center;
+  top: -1.8rem;
+}
+
+/* Inventory */
+
+.InventoryWrapper .Inventory .InvenBody .InvenBodyRight {
+  justify-content: flex-start !important;
+  background-color: #12374d59 !important;
+  border: 1px solid #00ffff82 !important;
+  border-radius: 0 !important;
+  box-shadow: 0 0 25px rgb(31 155 161 / 67%) !important;
+  height: 27.5rem !important;
+  width: 23.5rem !important;
+}
+
+.InventoryWrapper .Inventory .InvenBody .InvenLeftSide {
+  align-items: center !important;
+  background-color: #12374d59 !important;
+  border: 1px solid #00ffff82 !important;
+  border-radius: 0 !important;
+  box-shadow: 0 0 25px rgb(31 155 161 / 67%) !important;
+  height: 27.5rem !important;
+}
+
+.Craftables .CraftablesBody .CraftablesLeftSide .CraftableItems .CraftableItemNotEnoughIngredients {
+  background-image: url(https://iili.io/FrZFdZJ.png);
+  border: 0rem solid #00000000 !important;
+  border-radius: 0 !important;
+  height: calc(3.5rem - 10px);
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  image-rendering: pixelated !important;
+  outline: 0px solid #00000000 !important;
+  width: calc(3.5rem - 10px);
+  background-color: #00000000 !important;
+  top: 0.7rem !important;
+  transform: scale(1.2);
+}
+
+.InvenHoveredItemInfo {
+  border: 0.5px solid #12adc9f1;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #0a72b8cc 0%, #02264770 75%) !important;
+  box-shadow: 0 0 25px rgb(31 155 161 / 67%) !important;
+  border-radius: 1rem !important;
+}
+
+.EnchantingTable .EnchantingTableBody .EnchantingTableLeft .PossibleEnchantments h2 {
+  color: #fff !important;
+}
+
+.EnchantingTable .EnchantingTableBody .EnchantingTableLeft .PossibleEnchantments .PossibleEnchantmentName {
+  color: #fff !important;
+}
+
+.EnchantingTable .EnchantingTableBody .EnchantingTableLeft .PossibleEnchantments .PossibleEnchantmentDescription {
+  color: #ffffffc7 !important;
+}
+
+.InventoryWrapper .Inventory .InvenBody .InvenLeftSide.InvenLeftSideDiamondEnchantingTable {
+  align-items: center !important;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #12374d59 0%, #00000038 75%) !important;
+  border: 1px solid #00ffff82 !important;
+  border-radius: 0 !important;
+  box-shadow: 0 0 25px rgb(31 155 161 / 67%) !important;
+  height: 27.5rem !important;
+}
+
+.InventoryWrapper .Inventory .InvenBody .InvenLeftSide.InvenLeftSideGoldEnchantingTable {
+  background-image: linear-gradient(174deg, #12374d59 0%, #00000038 75%) !important;
+  width: 41rem !important;  
+}
+
+.InventoryWrapper .Inventory .InvenBody .InvenLeftSide.InvenLeftSideIronEnchantingTable {
+  background-image: linear-gradient(174deg, #12374d59 0%, #00000038 75%) !important;
+}
+
+.InventoryWrapper .Inventory .InvenBody .InvenLeftSide.InvenLeftSideStoneEnchantingTable {
+  background-image: linear-gradient(174deg, #12374d59 0%, #00000038 75%) !important;
+}
+
+.InventoryWrapper .Inventory .InvenBody .InvenLeftSide.InvenLeftSideWoodEnchantingTable {
+  background-image: linear-gradient(174deg, #12374d59 0%, #00000038 75%) !important;
+}
+
+.CreativeItemSlotsWrapper .CreateItemSlotsScrollable .CreativeItemSlots {
+  background-color: #00000030 !important;
+  height: 23rem !important;
+  width: 23rem !important;
+}
+
+.InvenItemWrapper {
+  height: 3.5rem !important;
+  width: 3.5rem !important;
+  transform: scale(1) !important;
+}
+
+.CreativeItemSlotsWrapper .CreateItemSlotsScrollable .CreativeItemSlots .CreativeItemSlotsInner {
+  margin: 1rem !important;
+}
+
+.InventoryWrapper .Inventory .InvenBody .GridItemSlots {
+  background-color: #00000026 !important;
+  outline: 4px solid #00000026 !important;
+}
+
+.InventoryWrapper .Inventory .InvenBody .InvenBodyRight .ArmourItemSlots {
+  outline: 1px solid #2dcfff8f !important;
+  margin: 1rem !important;
+}
+
+.InventoryWrapper .Inventory .InvenBody .InvenBodyRight .GridItemSlots {
+  margin: 0.2rem 0 0 !important;
+}
+
+.CreativeItemSlotsWrapper .CreativeItemSlotsSearch {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #00728fe0 0%, #000a1c80 75%) !important;
+  border: 1px solid #23b9ffa6 !important;
+  box-shadow: 0 0 25px rgb(31 155 161 / 67%) !important;
+}
+
+/* Shop */
+
+.ShopBody {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(174deg, #00728fe0 0%, #000a1c80 75%) !important;
+  border: 1px solid #23b9ffa6 !important;
+  box-shadow: 0 0 25px rgb(31 155 161 / 67%) !important;
+  border-radius: 1rem !important;
+}
+
+.Menu .MenuSideBar {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(97deg, #00aad525 0%, #0014393d 75%) !important;
+  border: 1px solid #36daff9e !important;
+  border-radius: 1rem !important;
+}
+
+.Menu .MenuBody {
+  background-color: #00000000 !important;
+}
+
+.ShopItem.ShopItemNoInputCanBuy {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(194deg, #18d0ffb9 0%, #1338a14a 74%) !important;
+  border-radius: 1rem !important;
+  border: 1px solid #04e8ff !important;
+  filter: brightness(1) !important;
+  box-shadow: 0 0 15px rgb(46 245 255 / 41%) !important;
+}
+
+.ShopItem {
+  border: 1px solid #04e8ff;
+  background-color: #00000000 !important;
+  background-image: linear-gradient(194deg, #0d65a569 0%, #00000000 74%);
+  border-radius: 1rem !important;
+  filter: brightness(1);
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0) !important;
+}
+
+.ShopItem.ShopItemNoInput {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(194deg, #5f676f69 0%, #00000059 74%);
+  border-radius: 1rem !important;
+  border: 1px solid #ffffff42;
+  filter: brightness(0.5);
+}
+
+.SidebarMenu .SidebarMenuTitle.ActiveSidebarMenuTitle {
+  background-color: #06262e48 !important;
+  box-shadow: inset 0 0 15px rgba(10, 175, 204, 0.534) !important;
+  border: 0px solid #00000000 !important;
+  background-image: url("https://iili.io/FgpPaNs.gif") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  filter: brightness(1) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  color: #fff !important;  
+}
+
+.SidebarMenu .SidebarMenuTitle {
+  border: 0px solid #00000000 !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  filter: brightness(0.75);
+  text-shadow: 0 0 BLACK !important;
+}
+
+/* Crosshair */
+
+.Crosshair {
+  background-image: url('https://iili.io/FrX6HIp.png') !important;
+  font-size: 0rem !important;
+  font-weight: 0 !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Extra */
+
+.AuraBarWrapper .AuraBar {
+  background-color: #22313b !important;
+  border: 2px solid #0ea9c2 !important;
+  height: 60% !important;
+  border-radius: 0.5rem !important;
+}
+
+.AuraBarWrapper .AuraBar .AuraBarBackground {
+  background: linear-gradient(58deg, #005abb, #36ffff 125%) !important;
+}
+
+.AuraBarWrapper .AuraBarLabel {
+  font-size: 0.79rem !important;
+  top: .45rem !important;
+}
+
+.AuraBarWrapper {
+  width: 41.5m !important;
+  top: .65rem !important;
+}
+
+.BottomScreenStatBarBackground {
+  box-shadow: 0 0 20px rgb(0 173 255), inset 0 0 5px rgb(0 137 255 / 90%) !important;
+  background-color: #04092a !important;
+  border: 1.2px solid #154059 !important;
+  border-radius: 1rem !important;
+}
+
+.HealthBar {
+  background-color: #00000000 !important;
+  background-image: linear-gradient(10deg, #156989 0%, #3cc9ff 74%) !important;
+  box-shadow: inset 0 .4rem 0 0 #ffffff10, inset 0 -.4rem 0 0 #00000017 !important;
+}
+
+.BottomScreenStatBarList {
+  align-items: flex-end !important;
+  display: flex !important;
+  gap: .5rem !important;
+  justify-content: center !important;
+  width: 42rem !important;
+  flex-direction: column !important;
+}
+
+.BottomScreenStatBarList .BottomScreenStatBarWrapper .BottomScreenStatBarBackground .BottomScreenStatBar.ShieldBar {
+  background-color: #00cbd5 !important;
+  box-shadow: inset 0 .4rem 0 0 #8ff5ff94, inset 0 -.4rem 0 0 #0000003b !important;
+}
+
+.rangeslider {
+  background-color: #ffffff96 !important;
+  border-radius: 1rem !important;
+}
+
+.rangeslider, .rangeslider .rangeslider__fill {
+  box-shadow: inset 0 10px 50px #00f3ff66 !important;
+  border-radius: 1rem !important;
+}
+
+.rangeslider-horizontal .rangeslider__handle {
+  border-radius: 0.5rem !important;
+}
+
+/* Custom Games */
+
+.CenteredDiv .CenteredDivMiddle .TopCustomGameList {
+  opacity: 0 !important;
+  width: 0rem !important;
+  height: 0rem !important;
+}
+
+.ThumbnailBadgesContainer {
+  opacity: 0 !important;
+  width: 0rem !important;
+  height: 0rem !important;
+}
+
+.CustomGameListContainer .CustomGameListHeaderContainer .CustomGameListHeader {
+  background-color: #00000030 !important;
+  border-radius: 1rem !important;
+}
+
+.CustomGameListContainer .RecentlyPlayedCustomGameList .RecentlyPlayedCustomGameTitle {
+  background-color: #00000030 !important;
+  border-radius: 1rem !important; 
+}
+
+.SchematicThumbnailContainer .SchematicThumbnail .SchematicDescription {
+  background-color: #12121273 !important;
+  font-size: .65rem !important;
+  border-radius: 1rem !important;
+}
+
+.CustomGameListContainer .CustomGameListHeaderContainer .CustomGameListHeader .CustomGameListSearch .CustomGameListSearchIcon {
+    background-color: #00000000 !important;
+    border: 0px solid #00000000 !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+    color: #00000000 !important;
+    display: flex;
+    font-size: 0rem !important;
+    justify-content: center;
+    padding: 0 0 !important;
+}
+
+.CustomGameListContainer .CustomGameListHeaderContainer .CustomGameListHeader .CustomGameListSearch .CustomGameListTextInput {
+  border-radius: 1rem !important;
+  border: 1px solid #009fcf !important;
+  margin: 0px 5px !important;
+}
+
+.CustomGameListContainer .CustomGameList .CustomGameListInner {
+  background-color: #0e182d82 !important;
+  padding: 1rem !important;
+  border-radius: 1rem !important;
+}
+
+.SchematicImageContainer .SchematicImage {
+  border-radius: 1rem !important;
+}
+
+/* Mobile */
+
+.back {
+  background-color: #31d6ff36 !important;
+  opacity: 0.7 !important;
+  border: 2px solid #41d3ffab !important;
+}
+
+.front {
+  background-color: #ffffff !important;
+  opacity: 0.7 !important;
+}
+
+.TouchComponentsWrapper .JumpCircle {
+  opacity: 0.7 !important;
+}
+
+.TouchComponentsWrapper .TouchPOV {
+  opacity: 0.7 !important;
+}
+
+.TouchComponentsWrapper .CrouchCircle {
+  pointer-events: auto;
+  opacity: 0.7 !important;
+  text-shadow: 0 0 5px rgb(255, 255, 255) !important;
+}
+
+.TouchComponentsWrapper .TouchCrouch {
+  text-shadow: 0 0 5px rgb(255, 255, 255) !important;  
+}
+
+.TouchComponentsWrapper .TouchButton {
+  align-items: center;
+  background-color: #00000000;
+  border-radius: 50%;
+  background-image: linear-gradient(10deg, #15698900 0%, #3cc9ff59 74%) !important;
+  border: 1px solid #25e2ff94;
+  text-shadow: 0 0 5px rgb(255, 255, 255) !important;
+  box-shadow: 0 0 20px rgb(0 173 255), inset 0 0 5px rgb(0 137 255 / 90%) !important;
+}
+
+/* Dumbass ads */
+
+.ToastNotification {
+  background-color: #00000000 !important;
+  border: 0px solid #00000000 !important;
+  width: 0px !important;
+  top: 50rem !important;
+}
+
+.CharCustomisation .CharCustomisationBody .CharCustomisationBodyHeader {
+  background-color: #00000000 !important;
+  height: 0rem !important;
+  width: 0rem !important;
+  color: #00000000 !important;
+}
+
+.ControlsTutorialDiv {
+  background-color: #00000000 !important;
+  width: 0rem !important;
+  left: 100% !important;
+  height: 0rem !important;
+  opacity: 0 !important;
+  border: 0px solid #00000000 !important;
+}
+
+/* Killchat */
+
+.Killfeed .IndividualKillWrapper {
+  border: 1px solid #00000048 !important;
+}

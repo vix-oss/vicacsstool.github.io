@@ -1,0 +1,25 @@
+/* Backgrounds */
+
+.AvailableGamebedwars {
+  background-image: url('https://iili.io/3yCt7mN.png') !important;
+}
+
+.AvailableGameoneBlock {
+  background-image: url('https://iili.io/KPhAvgR.jpg') !important;
+}
+
+/* Extra */
+
+
+.ThumbnailBadgesContainer .ThumbnailBadgeContainer .ThumbnailBadgeMain {
+    background: #00000000 !important;
+    width: 0rem !important;
+    font-size: 0 !important;
+    color: #00000000 !important;
+    box-shadow: 0 0 #00000000 !important;
+}
+
+.GameCardContainer .AvailableGame .AvailableGameInner .AvailableGameTextWrapper {
+    align-items: stretch !important;
+    display: flex !important;
+}
