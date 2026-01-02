@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloxd.io Texture Pack 生成器 (Pro)</title>
+    <link rel="stylesheet" href="tool.css">
+    <link rel="stylesheet" href="Adblock.css">
+    <link rel="stylesheet" href="astray.css">
+    <link rel="stylesheet" href="Gamemodes.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 頭部標題 */
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .header p {
+            color: #b0b8c1;
+            font-size: 0.95em;
+        }
+
+        /* 面板樣式 */
+        .panel, .output-area {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            padding: 28px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .panel h2, .output-area h2 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            color: #00d4ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel h2::before {
+            content: '⚙️';
+            font-size: 1.2em;
+        }
+
+        .output-area h2::before {
+            content: '📋';
+        }
+
+        /* 選擇器區域 */
+        .selector-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .selector-wrapper label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #00d4ff;
+            font-size: 0.95em;
+        }
+
+        #featureSelect {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(0, 212, 255, 0.4);
+            border-radius: 8px;
+            background: rgba(15, 20, 25, 0.8);
+            color: #e0e0e0;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            padding-right: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300d4ff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 40px;
+        }
+
+        #featureSelect:hover {
+            border-color: rgba(0, 212, 255, 0.7);
+            background-color: rgba(0, 212, 255, 0.05);
+        }
+
+        #featureSelect:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+        }
+
+        /* 按鈕樣式 */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .add-btn, .copy-btn, .remove-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            color: #000;
+            flex: 1;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+        }
+
+        .add-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            color: #000;
+            width: 100%;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+        }
+
+        .remove-btn {
+            background: rgba(255, 68, 68, 0.2);
+            color: #ff4444;
+            border: 1px solid rgba(255, 68, 68, 0.4);
+            padding: 8px 12px;
+            font-size: 0.85em;
+        }
+
+        .remove-btn:hover {
+            background: rgba(255, 68, 68, 0.3);
+            border-color: rgba(255, 68, 68, 0.6);
+        }
+
+        /* 模組卡片 */
+        #module-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .module-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        .module-card:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 4px 16px rgba(0, 212, 255, 0.15);
+            background: rgba(0, 212, 255, 0.08);
+        }
+
+        .module-title {
+            display: block;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 16px;
+            font-size: 1.05em;
+        }
+
+        /* 輸入欄位 */
+        .module-card > div {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .module-card > div > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9em;
+            color: #a0a8b1;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="color"],
+        input[type="range"] {
+            padding: 10px 12px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 6px;
+            background: rgba(15, 20, 25, 0.6);
+            color: #e0e0e0;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="color"]:focus,
+        input[type="range"]:focus {
+            outline: none;
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+        }
+
+        input[type="color"] {
+            height: 40px;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        input[type="range"] {
+            padding: 0;
+            height: 6px;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #00d4ff;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+            border: 2px solid rgba(0, 212, 255, 0.8);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #00d4ff;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+            border: 2px solid rgba(0, 212, 255, 0.8);
+        }
+
+        .value-display {
+            display: inline-block;
+            font-size: 0.85em;
+            color: #00d4ff;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        /* 輸出區域 */
+        #finalCss {
+            width: 100%;
+            height: 400px;
+            padding: 16px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(15, 20, 25, 0.8);
+            color: #00d4ff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        #finalCss:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+        }
+
+        /* 空狀態提示 */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+            font-size: 0.95em;
+        }
+
+        .empty-state p {
+            margin-bottom: 10px;
+        }
+
+        /* 動畫 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .panel, .output-area {
+                padding: 20px;
+            }
+
+            .module-card > div {
+                grid-template-columns: 1fr;
+            }
+
+            #finalCss {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Bloxd.io CSS 生成器</h1>
+            <p>輕鬆打造專屬的遊戲視覺效果</p>
+        </div>
+
+        <div class="panel">
+            <h2>功能模組</h2>
+            <div class="selector-wrapper">
+                <label>選擇功能模組</label>
+                <select id="featureSelect">
+                <option value="">-- 選擇一個模組 --</option>
+                <option value="crosshair">🎯 自訂準心 (Crosshair)</option>
+                <option value="chat">💬 聊天室美化 (Chat)</option>
+                <option value="hotbar">⚔️ 快捷欄與物品 (Hotbar)</option>
+                <option value="health">❤️ 血條樣式 (Health Bar)</option>
+                <option value="menu">🏠 主選單背景 (Menu)</option>
+                <option value="mobile">📱 手機版按鈕 (Mobile)</option>
+                <option value="newbutton">🔘 新按鈕 (New Button)</option>
+                <option value="mainmenutheme">🏠 主選單主題 (Main Menu Theme)</option>
+                <option value="settingstheme">⚙️ 設定選單主題 (Settings Theme)</option>
+                <option value="buttontheme">🔘 按鈕主題 (Button Theme)</option>
+                <option value="socialbartheme">👥 社交欄主題 (Social Bar Theme)</option>
+                <option value="inputtheme">📝 輸入框主題 (Input Theme)</option>
+                <option value="inventorytheme">🎒 背包主題 (Inventory Theme)</option>
+                <option value="shoptheme">🛒 商店主題 (Shop Theme)</option>
+                <option value="chartheme">👤 角色自訂主題 (Character Theme)</option>
+                <option value="loadertheme">⏳ 載入器主題 (Loader Theme)</option>
+                <option value="ingameheadertheme">🎮 遊戲內標題主題 (In-Game Header Theme)</option>
+                <option value="uirequeststheme">📨 UI 請求主題 (UI Requests Theme)</option>
+                <option value="hotbartheme">⚔️ 快捷欄主題 (Hotbar Theme)</option>
+                <option value="crosshairtheme">🎯 準心主題 (Crosshair Theme)</option>
+                <option value="chatmessagestheme">💬 聊天消息主題 (Chat Messages Theme)</option>
+                <option value="fpstheme">📊 FPS 顯示主題 (FPS Theme)</option>
+                <option value="coordinatetheme">📍 座標 UI 主題 (Coordinate Theme)</option>
+                <option value="homepagebgtheme">🏠 首頁背景主題 (Home Page BG Theme)</option>
+                <option value="texturepacktheme">🎨 紋理包主題 (Texture Pack Theme)</option>
+            </select>
+            </div>
+            <div class="button-group">
+                <button class="add-btn" onclick="addModule()">+ 新增功能</button>
+            </div>
+
+            <div id="module-container"></div>
+        </div>
+
+        <div class="output-area">
+            <h2>CSS 代碼預覽</h2>
+            <textarea id="finalCss" readonly>/* CSS 將顯示在此處 */</textarea>
+            <button class="copy-btn" onclick="copyCSS()">📋 複製 CSS</button>
+        </div>
+    </div>
+
+    <script>
+        // === 核心配置 (根據你提供的檔案解析) ===
+        const FEATURE_CONFIG = {
+            crosshair: {
+                name: "準心 (Crosshair)",
+                selector: ".Crosshair",
+                baseCss: "font-size: 0rem !important; background-repeat: no-repeat !important; background-size: contain !important;",
+                inputs: [
+                    { label: "圖片網址 (URL)", type: "text", cssProp: "background-image", format: "url('{val}')" },
+                    { label: "大小 (rem)", type: "number", step: 0.1, cssProp: "width", suffix: "rem", extraCss: "height: {val}rem !important;" } // 特殊處理：寬高連動
+                ]
+            },
+            adblock: {
+                name: "隱藏廣告 (AdBlock)",
+                // 根據 Adblock.css 組合多個選擇器
+                selector: ".AdBannerContainer, .LoadingOverlayLeft, .LoadingOverlayRight .LoadingOverlayRightAdBannerContainer, .AdBannerContainer .SuperRankAdContainer",
+                baseCss: "opacity: 0 !important; width: 0rem !important; height: 0rem !important; pointer-events: none !important;",
+                inputs: [] // 不需要輸入，直接套用隱藏樣式
+            },
+            chat: {
+                name: "聊天室 (Chat)",
+                selector: ".Chat",
+                baseCss: "border-radius: 1rem !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "最大高度 (rem)", type: "number", step: 0.1, cssProp: "max-height", suffix: "rem" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "漸層角度", type: "range", min: 0, max: 360, cssProp: "background-image", gradientPart: "angle" },
+                    { label: "漸層起始顏色", type: "color", cssProp: "background-image", gradientPart: "startColor" },
+                    { label: "漸層結束顏色", type: "color", cssProp: "background-image", gradientPart: "endColor" },
+                    { label: "陰影水平偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "h" },
+                    { label: "陰影垂直偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "v" },
+                    { label: "陰影模糊半徑 (px)", type: "range", min: 0, max: 100, cssProp: "box-shadow", shadowPart: "blur" },
+                    { label: "陰影顏色", type: "color", cssProp: "box-shadow", shadowPart: "color" },
+                    { label: "陰影透明度", type: "range", min: 0, max: 1, step: 0.1, cssProp: "box-shadow", shadowPart: "alpha" }
+                ]
+            },
+            hotbar: {
+                name: "快捷欄物品 (Hotbar Items)",
+                selector: ".HotBarContainer .HotBar .HotBarGameItemsContainer .InvenItem",
+                baseCss: "border: 0rem solid transparent !important; border-radius: 0 !important; background-color: transparent !important; image-rendering: pixelated !important;",
+                inputs: [
+                    { label: "自訂物品框圖片 (URL)", type: "text", cssProp: "background-image", format: "url('{val}')" },
+                    { label: "縮放比例 (Scale)", type: "number", step: 0.1, cssProp: "transform", format: "scale({val})" }
+                ]
+            },
+            health: {
+                name: "血條 (Health Bar)",
+                selector: ".HealthBar",
+                baseCss: "background-color: transparent !important; box-shadow: inset 0 .4rem 0 0 #ffffff10 !important;",
+                inputs: [
+                    { label: "背景圖片 (URL)", type: "text", cssProp: "background-image", format: "url('{val}')" },
+                    { label: "漸層角度", type: "range", min: 0, max: 360, cssProp: "background-image", gradientPart: "angle" },
+                    { label: "漸層起始顏色", type: "color", cssProp: "background-image", gradientPart: "startColor" },
+                    { label: "漸層結束顏色", type: "color", cssProp: "background-image", gradientPart: "endColor" },
+                    { label: "色相旋轉 (改變顏色)", type: "range", min: 0, max: 360, cssProp: "filter", format: "hue-rotate({val}deg)" },
+                    { label: "陰影水平偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "h" },
+                    { label: "陰影垂直偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "v" },
+                    { label: "陰影模糊半徑 (px)", type: "range", min: 0, max: 100, cssProp: "box-shadow", shadowPart: "blur" },
+                    { label: "陰影顏色", type: "color", cssProp: "box-shadow", shadowPart: "color" },
+                    { label: "陰影透明度", type: "range", min: 0, max: 1, step: 0.1, cssProp: "box-shadow", shadowPart: "alpha" }
+                ]
+            },
+            menu: {
+                name: "主選單 (Main Menu)",
+                selector: ".EverythingMenuContainer .EverythingMenu",
+                baseCss: "border-radius: 1rem !important; border: 1px solid #23ccffa6 !important;",
+                inputs: [
+                    { label: "背景圖片 (URL)", type: "text", cssProp: "background-image", format: "url('{val}')" },
+                    { label: "漸層角度", type: "range", min: 0, max: 360, cssProp: "background-image", gradientPart: "angle" },
+                    { label: "漸層起始顏色", type: "color", cssProp: "background-image", gradientPart: "startColor" },
+                    { label: "漸層結束顏色", type: "color", cssProp: "background-image", gradientPart: "endColor" },
+                    { label: "陰影水平偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "h" },
+                    { label: "陰影垂直偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "v" },
+                    { label: "陰影模糊半徑 (px)", type: "range", min: 0, max: 100, cssProp: "box-shadow", shadowPart: "blur" },
+                    { label: "陰影顏色", type: "color", cssProp: "box-shadow", shadowPart: "color" },
+                    { label: "陰影透明度", type: "range", min: 0, max: 1, step: 0.1, cssProp: "box-shadow", shadowPart: "alpha" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" }
+                ]
+            },
+            mobile: {
+                name: "手機版控制 (Mobile)",
+                selector: ".TouchComponentsWrapper .TouchButton",
+                baseCss: "border-radius: 50% !important; backdrop-filter: blur(2px);",
+                inputs: [
+                    { label: "透明度", type: "range", min: 0, max: 1, step: 0.1, cssProp: "opacity" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "漸層角度", type: "range", min: 0, max: 360, cssProp: "background-image", gradientPart: "angle" },
+                    { label: "漸層起始顏色", type: "color", cssProp: "background-image", gradientPart: "startColor" },
+                    { label: "漸層結束顏色", type: "color", cssProp: "background-image", gradientPart: "endColor" },
+                    { label: "陰影水平偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "h" },
+                    { label: "陰影垂直偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "v" },
+                    { label: "陰影模糊半徑 (px)", type: "range", min: 0, max: 100, cssProp: "box-shadow", shadowPart: "blur" },
+                    { label: "陰影顏色", type: "color", cssProp: "box-shadow", shadowPart: "color" },
+                    { label: "陰影透明度", type: "range", min: 0, max: 1, step: 0.1, cssProp: "box-shadow", shadowPart: "alpha" }
+                ]
+            },
+            newbutton: {
+                name: "新按鈕 (New Button)",
+                selector: ".NewButton",
+                baseCss: "border-radius: 0.5rem !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "文字顏色", type: "color", cssProp: "color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "陰影水平偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "h" },
+                    { label: "陰影垂直偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "v" },
+                    { label: "陰影模糊半徑 (px)", type: "range", min: 0, max: 100, cssProp: "box-shadow", shadowPart: "blur" },
+                    { label: "陰影顏色", type: "color", cssProp: "box-shadow", shadowPart: "color" },
+                    { label: "陰影透明度", type: "range", min: 0, max: 1, step: 0.1, cssProp: "box-shadow", shadowPart: "alpha" },
+                    { label: "漸層角度", type: "range", min: 0, max: 360, cssProp: "background-image", gradientPart: "angle" },
+                    { label: "漸層起始顏色", type: "color", cssProp: "background-image", gradientPart: "startColor" },
+                    { label: "漸層結束顏色", type: "color", cssProp: "background-image", gradientPart: "endColor" }
+                ]
+            },
+            mainmenutheme: {
+                name: "主選單主題 (Main Menu Theme)",
+                selector: ".EverythingMenuContainer .EverythingMenu",
+                baseCss: "box-shadow: 0 0 15px rgb(19 244 255 / 60%), inset 0 0 25px rgb(0 139 181 / 90%) !important; border-radius: 1rem !important; background-color: #00000000 !important; background-image: linear-gradient(198deg, #37d7ff4d 0%, #05215580 75%) !important; border: 1px solid #23ccffa6 !important;",
+                inputs: [
+                    { label: "主要顏色", type: "color", cssProp: "border-color", extraCss: "box-shadow: 0 0 15px {val}, inset 0 0 25px {val} !important;" },
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(198deg, #37d7ff4d 0%, #05215580 75%)" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 15px rgb(19 244 255 / 60%), inset 0 0 25px rgb(0 139 181 / 90%)" }
+                ]
+            },
+            settingstheme: {
+                name: "設定選單主題 (Settings Theme)",
+                selector: ".SettingsMenu, .SettingsMenuLeft, .SettingBox",
+                baseCss: "background-color: #00000000 !important; border: 1px solid #23b3d3; border-radius: 1rem; background-image: linear-gradient(120deg, #34baff36 0%, #00234785 75%) !important; box-shadow: 0 0 15px rgb(0 28 37 / 60%) !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(120deg, #34baff36 0%, #00234785 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 15px rgb(0 28 37 / 60%)" }
+                ]
+            },
+            buttontheme: {
+                name: "按鈕主題 (Button Theme)",
+                selector: ".NewButton, .BlueButton, .RedButton, .GoldButton",
+                baseCss: "border-radius: 1rem !important; background-color: #00000000 !important; border: 1px solid #24b8c7; background-image: linear-gradient(174deg, #13b5dd73 0%, #13347054 75%);",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(174deg, #13b5dd73 0%, #13347054 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 10px rgba(0,0,0,0.3)" },
+                    { label: "文字顏色", type: "color", cssProp: "color" }
+                ]
+            },
+            socialbartheme: {
+                name: "社交欄主題 (Social Bar Theme)",
+                selector: ".SocialBarContainer .SocialBarOuter .SocialBar .CondensedSocialBarInner .CondensedSectionsContainer .CondensedSections, .SocialBarContainer .SocialBarOuter .SocialBar .SocialBarInner .SocialBarFooter",
+                baseCss: "box-shadow: 0 0 15px rgba(19, 243, 255, 0.356), inset 0 0 25px rgba(0, 139, 181, 0.521) !important; border-radius: 1rem !important; background-color: #00000000 !important; background-image: linear-gradient(198deg, #37d7ff23 0%, #05215538 75%) !important; border: 1px solid #23ccff52 !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(198deg, #37d7ff23 0%, #05215538 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 15px rgba(19, 243, 255, 0.356), inset 0 0 25px rgba(0, 139, 181, 0.521)" }
+                ]
+            },
+            inputtheme: {
+                name: "輸入框主題 (Input Theme)",
+                selector: ".TextInput, .JoinLobbyInput, .LabeledInput .TextInput",
+                baseCss: "box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important; border-radius: 1rem !important; background-color: #00000000 !important; background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important; border: 1px solid #23ccffa6 !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(174deg, #2352ad38 0%, #00000038 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 10px rgba(3, 77, 102, 0.644)" },
+                    { label: "文字顏色", type: "color", cssProp: "color" }
+                ]
+            },
+            inventorytheme: {
+                name: "背包主題 (Inventory Theme)",
+                selector: ".InventoryWrapper .Inventory .InvenBody .InvenBodyRight, .InventoryWrapper .Inventory .InvenBody .InvenLeftSide",
+                baseCss: "background-color: #12374d59 !important; border: 1px solid #00ffff82 !important; border-radius: 0 !important; box-shadow: 0 0 25px rgb(31 155 161 / 67%) !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 25px rgb(31 155 161 / 67%)" },
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(45deg, #12374d59, #000000)" }
+                ]
+            },
+            shoptheme: {
+                name: "商店主題 (Shop Theme)",
+                selector: ".ShopBody, .ShopItem",
+                baseCss: "background-color: #00000000 !important; background-image: linear-gradient(174deg, #00728fe0 0%, #000a1c80 75%) !important; border: 1px solid #23b9ffa6 !important; box-shadow: 0 0 25px rgb(31 155 161 / 67%) !important; border-radius: 1rem !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(174deg, #00728fe0 0%, #000a1c80 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 25px rgb(31 155 161 / 67%)" },
+                    { label: "文字顏色", type: "color", cssProp: "color" }
+                ]
+            },
+            chartheme: {
+                name: "角色自訂主題 (Character Theme)",
+                selector: ".CharCustomisation, .CharCustomisationBody .CharCustomisationBodyInner .CharCustomisPartSelectorWrapper .CharCustomPartWrapper",
+                baseCss: "box-shadow: 0 0 15px rgb(19 244 255 / 60%), inset 0 0 25px rgb(0 139 181 / 90%) !important; border-radius: 1rem !important; background-color: #00000000 !important; background-image: linear-gradient(198deg, #37d7ff4d 0%, #05215580 75%) !important; border: 1px solid #23ccffa6 !important;",
+                inputs: [
+                    { label: "漸層角度", type: "range", min: 0, max: 360, cssProp: "background-image", gradientPart: "angle" },
+                    { label: "漸層起始顏色", type: "color", cssProp: "background-image", gradientPart: "startColor" },
+                    { label: "漸層結束顏色", type: "color", cssProp: "background-image", gradientPart: "endColor" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "陰影水平偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "h" },
+                    { label: "陰影垂直偏移 (px)", type: "range", min: -50, max: 50, cssProp: "box-shadow", shadowPart: "v" },
+                    { label: "陰影模糊半徑 (px)", type: "range", min: 0, max: 100, cssProp: "box-shadow", shadowPart: "blur" },
+                    { label: "陰影顏色", type: "color", cssProp: "box-shadow", shadowPart: "color" },
+                    { label: "陰影透明度", type: "range", min: 0, max: 1, step: 0.1, cssProp: "box-shadow", shadowPart: "alpha" }
+                ]
+            },
+            loadertheme: {
+                name: "載入器主題 (Loader Theme)",
+                selector: ".LogoLoader .LogoLoaderInner, .LogoLoader.LogoLoaderLoading .LogoLoaderOuter",
+                baseCss: "border-radius: 10rem !important; background-size: contain !important; background-repeat: no-repeat !important; background-image: linear-gradient(347deg, #25deffc4 0%, #15181a80 70%) !important; border: 0px solid #00000000 !important; box-shadow: 0 0 25px rgb(0 243 255), inset 0 0 25px rgba(22, 201, 255, 0.9) !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(347deg, #25deffc4 0%, #15181a80 70%)" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 25px rgb(0 243 255), inset 0 0 25px rgba(22, 201, 255, 0.9)" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" }
+                ]
+            },
+            ingameheadertheme: {
+                name: "遊戲內標題主題 (In-Game Header Theme)",
+                selector: ".InGameHeaderContainer .InGameHeader",
+                baseCss: "background-color: #00000000 !important; border: 0px solid #00000000 !important; gap: .25rem !important; padding: 0 0.5rem 0 0rem !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "間距 (rem)", type: "number", step: 0.1, cssProp: "gap", suffix: "rem" },
+                    { label: "內邊距 (rem)", type: "number", step: 0.1, cssProp: "padding", suffix: "rem" }
+                ]
+            },
+            uirequeststheme: {
+                name: "UI 請求主題 (UI Requests Theme)",
+                selector: ".UiRequests .UiRequestContainer .UiRequest .UiRequestInner",
+                baseCss: "background-image: linear-gradient(174deg, #0fa9e999 0%, #00375f63 75%) !important; border: 1px solid #23ccffa6 !important; border-radius: 1rem !important; box-shadow: 0 0 15px rgba(19, 243, 255, 0.356), inset 0 0 25px rgba(0, 139, 181, 0.521) !important; background-color: #00000000 !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(174deg, #0fa9e999 0%, #00375f63 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 15px rgba(19, 243, 255, 0.356), inset 0 0 25px rgba(0, 139, 181, 0.521)" }
+                ]
+            },
+            hotbartheme: {
+                name: "快捷欄主題 (Hotbar Theme)",
+                selector: ".HotBarContainer .HotBar .HotBarGameItemsContainer .InvenItem, .HotBarItem",
+                baseCss: "background-image: url(https://iili.io/Fr1lnLv.png) !important; border: 0rem solid #00000000 !important; border-radius: 0 !important; background-repeat: no-repeat !important; background-size: contain !important; image-rendering: pixelated !important; outline: 0px solid #00000000 !important; background-color: #00000000;",
+                inputs: [
+                    { label: "背景圖片 (URL)", type: "text", cssProp: "background-image", format: "url('{val}')" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "背景顏色", type: "color", cssProp: "background-color" }
+                ]
+            },
+            crosshairtheme: {
+                name: "準心主題 (Crosshair Theme)",
+                selector: ".Crosshair",
+                baseCss: "background-image: url('https://iili.io/FrX6HIp.png') !important; font-size: 0rem !important; font-weight: 0 !important; background-size: contain !important; background-repeat: no-repeat !important;",
+                inputs: [
+                    { label: "準心圖片 (URL)", type: "text", cssProp: "background-image", format: "url('{val}')" },
+                    { label: "大小 (rem)", type: "number", step: 0.1, cssProp: "font-size", suffix: "rem" }
+                ]
+            },
+            chatmessagestheme: {
+                name: "聊天消息主題 (Chat Messages Theme)",
+                selector: ".Chat .ChatMessages .MessageWrapper, .MessageWrapper.ChatMsgSelectWrapper",
+                baseCss: "background-color: #00000000 !important; font-size: 0.8rem; color: #ffd51a !important; padding: .12rem .4rem !important; opacity: 0.5;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "文字顏色", type: "color", cssProp: "color" },
+                    { label: "字體大小 (rem)", type: "number", step: 0.1, cssProp: "font-size", suffix: "rem" },
+                    { label: "透明度", type: "range", min: 0, max: 1, step: 0.1, cssProp: "opacity" },
+                    { label: "內邊距 (rem)", type: "number", step: 0.1, cssProp: "padding", suffix: "rem" }
+                ]
+            },
+            fpstheme: {
+                name: "FPS 顯示主題 (FPS Theme)",
+                selector: ".FpsWrapperDiv",
+                baseCss: "background-color: #00000000 !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "文字顏色", type: "color", cssProp: "color" }
+                ]
+            },
+            coordinatetheme: {
+                name: "座標 UI 主題 (Coordinate Theme)",
+                selector: ".CoordinateUI",
+                baseCss: "background-color: #0000002e !important; border-radius: 1rem !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "文字顏色", type: "color", cssProp: "color" }
+                ]
+            },
+            homepagebgtheme: {
+                name: "首頁背景主題 (Home Page BG Theme)",
+                selector: ".HomePageInner, .HomePageBackgroundContainer",
+                baseCss: "background-image: url('https://iili.io/FUpAoCB.jpg') !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center !important;",
+                inputs: [
+                    { label: "背景圖片 (URL)", type: "text", cssProp: "background-image", format: "url('{val}')" },
+                    { label: "背景大小", type: "text", cssProp: "background-size", placeholder: "cover" },
+                    { label: "背景重複", type: "text", cssProp: "background-repeat", placeholder: "no-repeat" }
+                ]
+            },
+            texturepacktheme: {
+                name: "紋理包主題 (Texture Pack Theme)",
+                selector: ".TexturePackCategory .TexturePackList, .TexturePackCategory .TexturePack",
+                baseCss: "grid-template-columns: repeat(2, 1fr) !important; gap: 7px !important; border: 2px solid #00a1ff4f !important; box-shadow: 0 0 BLACK !important; aspect-ratio: 5 / 1 !important; border-radius: 1rem !important;",
+                inputs: [
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 BLACK" },
+                    { label: "間距 (px)", type: "number", cssProp: "gap", suffix: "px" }
+                ]
+            }
+        };
+
+        const container = document.getElementById('module-container');
+        let activeModules = [];
+
+        function addModule() {
+            const featureSelect = document.getElementById('featureSelect');
+            const type = featureSelect.value;
+            
+            if (!type) {
+                alert('請選擇一個功能模組');
+                return;
+            }
+            
+            const config = FEATURE_CONFIG[type];
+            const uniqueId = Date.now();
+
+            const card = document.createElement('div');
+            card.className = 'module-card';
+            card.dataset.id = uniqueId;
+            card.dataset.type = type;
+
+            let inputsHtml = '';
+            config.inputs.forEach((input, index) => {
+                const defaultValue = input.defaultValue || (input.min ? input.min : 0);
+                const inputId = `input-${uniqueId}-${index}`;
+                const valueId = `value-${uniqueId}-${index}`;
+                inputsHtml += `
+                    <div>
+                        <label>${input.label}</label>
+                        <input 
+                            id="${inputId}"
+                            type="${input.type}" 
+                            data-index="${index}" 
+                            placeholder="${input.placeholder || ''}"
+                            value="${defaultValue}"
+                            ${input.step ? `step="${input.step}"` : ''}
+                            ${input.min ? `min="${input.min}"` : ''}
+                            ${input.max ? `max="${input.max}"` : ''}
+                            oninput="updateValue('${valueId}', this.value); generateCSS()"
+                        >
+                        ${input.type === 'range' ? `<span id="${valueId}" class="value-display">${defaultValue}</span>` : ''}
+                    </div>
+                `;
+            });
+
+            // 處理不需要輸入的模組 (如 Adblock)
+            if (config.inputs.length === 0) {
+                inputsHtml = '<p style="font-size:0.8em; color:#888;">此模組已啟用，無須設定。</p>';
+            }
+
+            card.innerHTML = `
+                <span class="module-title">${config.name}</span>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <button class="remove-btn" onclick="removeModule(${uniqueId})">✕ 移除</button>
+                </div>
+                ${inputsHtml}
+            `;
+
+            container.appendChild(card);
+            activeModules.push({ id: uniqueId, type: type });
+            generateCSS();
+        }
+
+        function removeModule(id) {
+            const card = document.querySelector(`.module-card[data-id='${id}']`);
+            if (card) card.remove();
+            activeModules = activeModules.filter(m => m.id !== id);
+            generateCSS();
+        }
+
+        function updateValue(valueId, newValue) {
+            const valueElement = document.getElementById(valueId);
+            if (valueElement) {
+                valueElement.textContent = newValue;
+            }
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function generateCSS() {
+            let fullCss = "/* Generated by Bloxd CSS Tool */\n";
+
+            const cards = document.querySelectorAll('.module-card');
+
+            cards.forEach(card => {
+                const type = card.dataset.type;
+                const config = FEATURE_CONFIG[type];
+                const inputs = card.querySelectorAll('input');
+
+                let properties = [];
+                if (config.baseCss) properties.push(config.baseCss);
+
+                let rgbValues = {};
+                let gradientValues = {};
+                let shadowValues = {};
+
+                inputs.forEach(input => {
+                    const val = input.value;
+                    if (val) {
+                        const def = config.inputs[input.dataset.index];
+                        let finalValue = val;
+
+                        if (def.rgbPart) {
+                            // RGB 輸入 (如果有的話)
+                            rgbValues[def.cssProp] = rgbValues[def.cssProp] || {};
+                            rgbValues[def.cssProp][def.rgbPart] = val;
+                        } else if (def.gradientPart) {
+                            // 漸層輸入
+                            gradientValues[def.cssProp] = gradientValues[def.cssProp] || {};
+                            gradientValues[def.cssProp][def.gradientPart] = val;
+                        } else if (def.shadowPart) {
+                            // 陰影輸入
+                            shadowValues[def.cssProp] = shadowValues[def.cssProp] || {};
+                            shadowValues[def.cssProp][def.shadowPart] = val;
+                        } else {
+                            // 正常輸入
+                            // 處理格式
+                            if (def.format) {
+                                finalValue = def.format.replace('{val}', val);
+                            } else if (def.suffix) {
+                                finalValue = val + def.suffix;
+                            }
+
+                            // 處理特殊情況：連動屬性 (例如改寬度同時改高度)
+                            if (def.extraCss) {
+                                const extra = def.extraCss.replace('{val}', val);
+                                properties.push(extra);
+                            }
+
+                            properties.push(`${def.cssProp}: ${finalValue} !important;`);
+                        }
+                    }
+                });
+
+                // 處理 RGB 值 (如果有的話)
+                for (const prop in rgbValues) {
+                    const rgb = rgbValues[prop];
+                    const r = rgb.r || 0;
+                    const g = rgb.g || 0;
+                    const b = rgb.b || 0;
+                    properties.push(`${prop}: rgb(${r}, ${g}, ${b}) !important;`);
+                }
+
+                // 處理漸層值
+                for (const prop in gradientValues) {
+                    const grad = gradientValues[prop];
+                    const angle = grad.angle || 0;
+                    const startColor = grad.startColor || '#ffffff';
+                    const endColor = grad.endColor || '#000000';
+                    properties.push(`${prop}: linear-gradient(${angle}deg, ${startColor}, ${endColor}) !important;`);
+                }
+
+                // 處理陰影值
+                for (const prop in shadowValues) {
+                    const shadow = shadowValues[prop];
+                    const h = shadow.h || 0;
+                    const v = shadow.v || 0;
+                    const blur = shadow.blur || 0;
+                    const color = shadow.color || '#000000';
+                    const alpha = shadow.alpha || 1;
+                    const rgb = hexToRgb(color);
+                    if (rgb) {
+                        properties.push(`${prop}: ${h}px ${v}px ${blur}px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha}) !important;`);
+                    }
+                }
+
+                fullCss += `\n${config.selector} {\n    ${properties.join('\n    ')}\n}\n`;
+            });
+
+            document.getElementById('finalCss').value = fullCss;
+        }
+
+        function copyCSS() {
+            const copyText = document.getElementById("finalCss");
+            if (copyText.value === "/* CSS 將顯示在此處 */") {
+                alert("請先新增功能模組！");
+                return;
+            }
+            copyText.select();
+            document.execCommand("copy");
+            
+            // 視覺反饋
+            const copyBtn = event.target;
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = "✓ 已複製！";
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>
