@@ -45,10 +45,9 @@
 ## 檔案結構
 
 ```
-tool.html          - 主程式頁面
-tool.css           - 主要樣式表
+texture.html          - 主程式頁面
 Adblock.css        - 廣告隱藏模組
-astray.css         - 額外自訂模組
+texture.css         - 額外自訂模組
 Gamemodes.css      - 遊戲模式主題
 README.md          - 本介紹文件
 ```
