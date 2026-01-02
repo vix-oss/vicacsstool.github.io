@@ -27,7 +27,7 @@
 
 ## 使用方法
 
-1. 打開 [tool.html](tool.html)
+1. 打開 [texture.html](texture.html)
 2. 從下拉菜單選擇想要自訂的功能模組
 3. 點擊「+ 新增功能」按鈕
 4. 調整各項參數（顏色、大小、位置等）
@@ -45,10 +45,9 @@
 ## 檔案結構
 
 ```
-tool.html          - 主程式頁面
-tool.css           - 主要樣式表
+texture.html          - 主程式頁面
 Adblock.css        - 廣告隱藏模組
-astray.css         - 額外自訂模組
+texture.css         - 額外自訂模組
 Gamemodes.css      - 遊戲模式主題
 README.md          - 本介紹文件
 ```
@@ -61,7 +60,7 @@ README.md          - 本介紹文件
 
 ## 開發者
 
-此工具由 vix-oss 開發和維護
+此工具由 vicaloser(YT:@vicaloser) 開發和維護
 
 ---
 
