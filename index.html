@@ -374,6 +374,39 @@
             }
         }
 
+        /* 語言選擇器 */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .language-selector select {
+            padding: 8px 12px;
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            border-radius: 6px;
+            background: rgba(15, 20, 25, 0.9);
+            color: #e0e0e0;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-selector select:hover {
+            border-color: rgba(0, 212, 255, 0.8);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+        }
+
         /* 響應式設計 */
         @media (max-width: 768px) {
             .header h1 {
@@ -391,11 +424,33 @@
             #finalCss {
                 height: 300px;
             }
+
+            .language-selector {
+                top: 10px;
+                right: 10px;
+            }
+
+            .language-selector select {
+                font-size: 0.8em;
+                padding: 6px 10px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- 語言選擇器 -->
+    <div class="language-selector">
+        <label for="languageSelect" data-i18n="language">語言:</label>
+        <select id="languageSelect">
+            <option value="zh-TW">繁體中文 (Traditional Chinese)</option>
+            <option value="zh-CN">简体中文 (Simplified Chinese)</option>
+            <option value="en">English</option>
+            <option value="ja">日本語 (Japanese)</option>
+            <option value="ko">한국어 (Korean)</option>
+        </select>
+    </div>
+
     <div class="container">
         <div class="header">
             <h1>🎨 Bloxd.io CSS 生成器</h1>
@@ -433,6 +488,16 @@
                 <option value="coordinatetheme">📍 座標 UI 主題 (Coordinate Theme)</option>
                 <option value="homepagebgtheme">🏠 首頁背景主題 (Home Page BG Theme)</option>
                 <option value="texturepacktheme">🎨 紋理包主題 (Texture Pack Theme)</option>
+                <option value="everythingmenu">📋 主選單容器 (Everything Menu)</option>
+                <option value="settingsmenuright">⚙️ 設定選單右側 (Settings Menu Right)</option>
+                <option value="menucontainer">🏠 選單側邊欄 (Menu Container)</option>
+                <option value="likebutton">👍 點讚按鈕 (Like Button)</option>
+                <option value="uirequest">📨 UI 請求 (UI Requests)</option>
+                <option value="aurabar">💨 光環條 (Aura Bar)</option>
+                <option value="enchanting">✨ 附魔台 (Enchanting Table)</option>
+                <option value="schematic">🏗️ 原理圖 (Schematic)</option>
+                <option value="customgame">🎮 自訂遊戲 (Custom Game)</option>
+                <option value="leaderboard">🏆 排行榜 (Leaderboard)</option>
             </select>
             </div>
             <div class="button-group">
@@ -450,6 +515,610 @@
     </div>
 
     <script>
+        // === 多語言翻譯配置 ===
+        const TRANSLATIONS = {
+            'zh-TW': {
+                // UI 基礎文本
+                'language': '語言:',
+                'title': '🎨 Bloxd.io CSS 生成器',
+                'subtitle': '輕鬆打造專屬的遊戲視覺效果',
+                'modules': '功能模組',
+                'selectModule': '選擇功能模組',
+                'selectOption': '-- 選擇一個模組 --',
+                'addBtn': '+ 新增功能',
+                'preview': 'CSS 代碼預覽',
+                'copyBtn': '📋 複製 CSS',
+                'copySuccess': '✓ 已複製！',
+                'emptyWarning': '請先新增功能模組！',
+                'removeBtn': '✕ 移除',
+                'disabledMsg': '此模組已啟用，無須設定。',
+                
+                // 功能模組名稱
+                'crosshair': '準心 (Crosshair)',
+                'adblock': '隱藏廣告 (AdBlock)',
+                'chat': '聊天室 (Chat)',
+                'hotbar': '快捷欄物品 (Hotbar Items)',
+                'health': '血條 (Health Bar)',
+                'menu': '主選單 (Main Menu)',
+                'mobile': '手機版控制 (Mobile)',
+                'newbutton': '新按鈕 (New Button)',
+                'mainmenutheme': '主選單主題 (Main Menu Theme)',
+                'settingstheme': '設定選單主題 (Settings Theme)',
+                'buttontheme': '按鈕主題 (Button Theme)',
+                'socialbartheme': '社交欄主題 (Social Bar Theme)',
+                'inputtheme': '輸入框主題 (Input Theme)',
+                'inventorytheme': '背包主題 (Inventory Theme)',
+                'shoptheme': '商店主題 (Shop Theme)',
+                'chartheme': '角色自訂主題 (Character Theme)',
+                'loadertheme': '載入器主題 (Loader Theme)',
+                'ingameheadertheme': '遊戲內標題主題 (In-Game Header Theme)',
+                'uirequeststheme': 'UI 請求主題 (UI Requests Theme)',
+                'hotbartheme': '快捷欄主題 (Hotbar Theme)',
+                'crosshairtheme': '準心主題 (Crosshair Theme)',
+                'chatmessagestheme': '聊天消息主題 (Chat Messages Theme)',
+                'fpstheme': 'FPS 顯示主題 (FPS Theme)',
+                'coordinatetheme': '座標 UI 主題 (Coordinate Theme)',
+                'homepagebgtheme': '首頁背景主題 (Home Page BG Theme)',
+                'texturepacktheme': '紋理包主題 (Texture Pack Theme)',
+                'everythingmenu': '主選單容器 (Everything Menu)',
+                'settingsmenuright': '設定選單右側 (Settings Menu Right)',
+                'menucontainer': '選單側邊欄 (Menu Container)',
+                'likebutton': '點讚按鈕 (Like Button)',
+                'uirequest': 'UI 請求 (UI Requests)',
+                'aurabar': '光環條 (Aura Bar)',
+                'enchanting': '附魔台 (Enchanting Table)',
+                'schematic': '原理圖 (Schematic)',
+                'customgame': '自訂遊戲 (Custom Game)',
+                'leaderboard': '排行榜 (Leaderboard)',
+                
+                // 輸入標籤
+                'imageUrl': '圖片網址 (URL)',
+                'size': '大小 (rem)',
+                'backgroundColor': '背景顏色',
+                'maxHeight': '最大高度 (rem)',
+                'borderRadius': '邊框半徑 (rem)',
+                'borderColor': '邊框顏色',
+                'gradientAngle': '漸層角度',
+                'gradientStartColor': '漸層起始顏色',
+                'gradientEndColor': '漸層結束顏色',
+                'shadowHOffset': '陰影水平偏移 (px)',
+                'shadowVOffset': '陰影垂直偏移 (px)',
+                'shadowBlur': '陰影模糊半徑 (px)',
+                'shadowColor': '陰影顏色',
+                'shadowAlpha': '陰影透明度',
+                'backgroundGradient': '背景漸層',
+                'shadowEffect': '陰影效果',
+                'textColor': '文字顏色',
+                'opacity': '透明度',
+                'brightness': '亮度調整 (%)',
+                'backgroundImage': '背景圖片 (URL)',
+                'borderWidth': '邊框寬度 (px)',
+                'height': '高度 (%)',
+                'padding': '內邊距 (rem)',
+                'gap': '間距 (rem)',
+                'fontSize': '字體大小 (rem)',
+                'backgroundSize': '背景大小',
+                'backgroundRepeat': '背景重複',
+                'scale': '縮放比例 (Scale)',
+                'itemFrame': '自訂物品框圖片 (URL)',
+            },
+            'zh-CN': {
+                // UI 基础文本
+                'language': '语言:',
+                'title': '🎨 Bloxd.io CSS 生成器',
+                'subtitle': '轻松打造专属的游戏视觉效果',
+                'modules': '功能模块',
+                'selectModule': '选择功能模块',
+                'selectOption': '-- 选择一个模块 --',
+                'addBtn': '+ 新增功能',
+                'preview': 'CSS 代码预览',
+                'copyBtn': '📋 复制 CSS',
+                'copySuccess': '✓ 已复制！',
+                'emptyWarning': '请先新增功能模块！',
+                'removeBtn': '✕ 删除',
+                'disabledMsg': '此模块已启用，无须设定。',
+                
+                // 功能模块名称
+                'crosshair': '准心 (Crosshair)',
+                'adblock': '隐藏广告 (AdBlock)',
+                'chat': '聊天室 (Chat)',
+                'hotbar': '快捷栏物品 (Hotbar Items)',
+                'health': '血条 (Health Bar)',
+                'menu': '主菜单 (Main Menu)',
+                'mobile': '手机版控制 (Mobile)',
+                'newbutton': '新按钮 (New Button)',
+                'mainmenutheme': '主菜单主题 (Main Menu Theme)',
+                'settingstheme': '设置菜单主题 (Settings Theme)',
+                'buttontheme': '按钮主题 (Button Theme)',
+                'socialbartheme': '社交栏主题 (Social Bar Theme)',
+                'inputtheme': '输入框主题 (Input Theme)',
+                'inventorytheme': '背包主题 (Inventory Theme)',
+                'shoptheme': '商店主题 (Shop Theme)',
+                'chartheme': '角色自定主题 (Character Theme)',
+                'loadertheme': '加载器主题 (Loader Theme)',
+                'ingameheadertheme': '游戏内标题主题 (In-Game Header Theme)',
+                'uirequeststheme': 'UI 请求主题 (UI Requests Theme)',
+                'hotbartheme': '快捷栏主题 (Hotbar Theme)',
+                'crosshairtheme': '准心主题 (Crosshair Theme)',
+                'chatmessagestheme': '聊天消息主题 (Chat Messages Theme)',
+                'fpstheme': 'FPS 显示主题 (FPS Theme)',
+                'coordinatetheme': '坐标 UI 主题 (Coordinate Theme)',
+                'homepagebgtheme': '首页背景主题 (Home Page BG Theme)',
+                'texturepacktheme': '纹理包主题 (Texture Pack Theme)',
+                'everythingmenu': '主菜单容器 (Everything Menu)',
+                'settingsmenuright': '设置菜单右侧 (Settings Menu Right)',
+                'menucontainer': '菜单侧边栏 (Menu Container)',
+                'likebutton': '点赞按钮 (Like Button)',
+                'uirequest': 'UI 请求 (UI Requests)',
+                'aurabar': '光环条 (Aura Bar)',
+                'enchanting': '附魔台 (Enchanting Table)',
+                'schematic': '原理图 (Schematic)',
+                'customgame': '自定义游戏 (Custom Game)',
+                'leaderboard': '排行榜 (Leaderboard)',
+                
+                // 输入标签
+                'imageUrl': '图片网址 (URL)',
+                'size': '大小 (rem)',
+                'backgroundColor': '背景颜色',
+                'maxHeight': '最大高度 (rem)',
+                'borderRadius': '边框半径 (rem)',
+                'borderColor': '边框颜色',
+                'gradientAngle': '渐层角度',
+                'gradientStartColor': '渐层起始颜色',
+                'gradientEndColor': '渐层结束颜色',
+                'shadowHOffset': '阴影水平偏移 (px)',
+                'shadowVOffset': '阴影垂直偏移 (px)',
+                'shadowBlur': '阴影模糊半径 (px)',
+                'shadowColor': '阴影颜色',
+                'shadowAlpha': '阴影透明度',
+                'backgroundGradient': '背景渐层',
+                'shadowEffect': '阴影效果',
+                'textColor': '文字颜色',
+                'opacity': '透明度',
+                'brightness': '亮度调整 (%)',
+                'backgroundImage': '背景图片 (URL)',
+                'borderWidth': '边框宽度 (px)',
+                'height': '高度 (%)',
+                'padding': '内边距 (rem)',
+                'gap': '间距 (rem)',
+                'fontSize': '字体大小 (rem)',
+                'backgroundSize': '背景大小',
+                'backgroundRepeat': '背景重复',
+                'scale': '缩放比例 (Scale)',
+                'itemFrame': '自定义物品框图片 (URL)',
+            },
+            'en': {
+                // UI Basic Text
+                'language': 'Language:',
+                'title': '🎨 Bloxd.io CSS Generator',
+                'subtitle': 'Easily create your own game visual effects',
+                'modules': 'Feature Modules',
+                'selectModule': 'Select a Feature Module',
+                'selectOption': '-- Select a module --',
+                'addBtn': '+ Add Module',
+                'preview': 'CSS Code Preview',
+                'copyBtn': '📋 Copy CSS',
+                'copySuccess': '✓ Copied!',
+                'emptyWarning': 'Please add a feature module first!',
+                'removeBtn': '✕ Remove',
+                'disabledMsg': 'This module is enabled, no configuration needed.',
+                
+                // Module Names
+                'crosshair': 'Crosshair',
+                'adblock': 'Hide Ads (AdBlock)',
+                'chat': 'Chat Room',
+                'hotbar': 'Hotbar Items',
+                'health': 'Health Bar',
+                'menu': 'Main Menu',
+                'mobile': 'Mobile Controls',
+                'newbutton': 'New Button',
+                'mainmenutheme': 'Main Menu Theme',
+                'settingstheme': 'Settings Menu Theme',
+                'buttontheme': 'Button Theme',
+                'socialbartheme': 'Social Bar Theme',
+                'inputtheme': 'Input Field Theme',
+                'inventorytheme': 'Inventory Theme',
+                'shoptheme': 'Shop Theme',
+                'chartheme': 'Character Theme',
+                'loadertheme': 'Loader Theme',
+                'ingameheadertheme': 'In-Game Header Theme',
+                'uirequeststheme': 'UI Requests Theme',
+                'hotbartheme': 'Hotbar Theme',
+                'crosshairtheme': 'Crosshair Theme',
+                'chatmessagestheme': 'Chat Messages Theme',
+                'fpstheme': 'FPS Display Theme',
+                'coordinatetheme': 'Coordinate UI Theme',
+                'homepagebgtheme': 'Home Page BG Theme',
+                'texturepacktheme': 'Texture Pack Theme',
+                'everythingmenu': 'Everything Menu Container',
+                'settingsmenuright': 'Settings Menu Right',
+                'menucontainer': 'Menu Sidebar',
+                'likebutton': 'Like Button',
+                'uirequest': 'UI Requests',
+                'aurabar': 'Aura Bar',
+                'enchanting': 'Enchanting Table',
+                'schematic': 'Schematic',
+                'customgame': 'Custom Game',
+                'leaderboard': 'Leaderboard',
+                
+                // Input Labels
+                'imageUrl': 'Image URL',
+                'size': 'Size (rem)',
+                'backgroundColor': 'Background Color',
+                'maxHeight': 'Max Height (rem)',
+                'borderRadius': 'Border Radius (rem)',
+                'borderColor': 'Border Color',
+                'gradientAngle': 'Gradient Angle',
+                'gradientStartColor': 'Gradient Start Color',
+                'gradientEndColor': 'Gradient End Color',
+                'shadowHOffset': 'Shadow Horizontal Offset (px)',
+                'shadowVOffset': 'Shadow Vertical Offset (px)',
+                'shadowBlur': 'Shadow Blur Radius (px)',
+                'shadowColor': 'Shadow Color',
+                'shadowAlpha': 'Shadow Opacity',
+                'backgroundGradient': 'Background Gradient',
+                'shadowEffect': 'Shadow Effect',
+                'textColor': 'Text Color',
+                'opacity': 'Opacity',
+                'brightness': 'Brightness Adjustment (%)',
+                'backgroundImage': 'Background Image (URL)',
+                'borderWidth': 'Border Width (px)',
+                'height': 'Height (%)',
+                'padding': 'Padding (rem)',
+                'gap': 'Gap (rem)',
+                'fontSize': 'Font Size (rem)',
+                'backgroundSize': 'Background Size',
+                'backgroundRepeat': 'Background Repeat',
+                'scale': 'Scale',
+                'itemFrame': 'Custom Item Frame (URL)',
+            },
+            'ja': {
+                // UI 基本テキスト
+                'language': '言語:',
+                'title': '🎨 Bloxd.io CSSジェネレーター',
+                'subtitle': '簡単にゲームのビジュアルエフェクトをカスタマイズできます',
+                'modules': '機能モジュール',
+                'selectModule': '機能モジュールを選択',
+                'selectOption': '-- モジュールを選択 --',
+                'addBtn': '+ モジュールを追加',
+                'preview': 'CSSコードプレビュー',
+                'copyBtn': '📋 CSSをコピー',
+                'copySuccess': '✓ コピーしました！',
+                'emptyWarning': '最初に機能モジュールを追加してください！',
+                'removeBtn': '✕ 削除',
+                'disabledMsg': 'このモジュールは有効です。設定は不要です。',
+                
+                // モジュール名
+                'crosshair': 'クロスヘア',
+                'adblock': '広告を非表示 (AdBlock)',
+                'chat': 'チャットルーム',
+                'hotbar': 'ホットバーアイテム',
+                'health': 'ヘルスバー',
+                'menu': 'メインメニュー',
+                'mobile': 'モバイルコントロール',
+                'newbutton': '新しいボタン',
+                'mainmenutheme': 'メインメニューテーマ',
+                'settingstheme': '設定メニューテーマ',
+                'buttontheme': 'ボタンテーマ',
+                'socialbartheme': 'ソーシャルバーテーマ',
+                'inputtheme': '入力フィールドテーマ',
+                'inventorytheme': 'インベントリテーマ',
+                'shoptheme': 'ショップテーマ',
+                'chartheme': 'キャラクターテーマ',
+                'loadertheme': 'ローダーテーマ',
+                'ingameheadertheme': 'ゲーム内ヘッダーテーマ',
+                'uirequeststheme': 'UIリクエストテーマ',
+                'hotbartheme': 'ホットバーテーマ',
+                'crosshairtheme': 'クロスヘアテーマ',
+                'chatmessagestheme': 'チャットメッセージテーマ',
+                'fpstheme': 'FPS表示テーマ',
+                'coordinatetheme': '座標UIテーマ',
+                'homepagebgtheme': 'ホームページBGテーマ',
+                'texturepacktheme': 'テクスチャパックテーマ',
+                'everythingmenu': 'メインメニューコンテナ',
+                'settingsmenuright': '設定メニュー右側',
+                'menucontainer': 'メニューサイドバー',
+                'likebutton': '「いいね」ボタン',
+                'uirequest': 'UIリクエスト',
+                'aurabar': 'オーラバー',
+                'enchanting': 'エンチャントテーブル',
+                'schematic': '原理図',
+                'customgame': 'カスタムゲーム',
+                'leaderboard': 'リーダーボード',
+                
+                // 入力ラベル
+                'imageUrl': '画像URL',
+                'size': 'サイズ (rem)',
+                'backgroundColor': '背景色',
+                'maxHeight': '最大高さ (rem)',
+                'borderRadius': '境界線の半径 (rem)',
+                'borderColor': '境界線の色',
+                'gradientAngle': 'グラデーション角度',
+                'gradientStartColor': 'グラデーション開始色',
+                'gradientEndColor': 'グラデーション終了色',
+                'shadowHOffset': '影の水平オフセット (px)',
+                'shadowVOffset': '影の垂直オフセット (px)',
+                'shadowBlur': '影のぼかし半径 (px)',
+                'shadowColor': '影の色',
+                'shadowAlpha': '影の不透明度',
+                'backgroundGradient': '背景グラデーション',
+                'shadowEffect': '影の効果',
+                'textColor': 'テキストの色',
+                'opacity': '不透明度',
+                'brightness': '明度調整 (%)',
+                'backgroundImage': '背景画像 (URL)',
+                'borderWidth': '境界線の幅 (px)',
+                'height': '高さ (%)',
+                'padding': 'パディング (rem)',
+                'gap': 'ギャップ (rem)',
+                'fontSize': 'フォントサイズ (rem)',
+                'backgroundSize': '背景サイズ',
+                'backgroundRepeat': '背景繰り返し',
+                'scale': 'スケール',
+                'itemFrame': 'カスタムアイテムフレーム (URL)',
+            },
+            'ko': {
+                // UI 기본 텍스트
+                'language': '언어:',
+                'title': '🎨 Bloxd.io CSS 생성기',
+                'subtitle': '쉽게 자신만의 게임 시각 효과를 만들 수 있습니다',
+                'modules': '기능 모듈',
+                'selectModule': '기능 모듈 선택',
+                'selectOption': '-- 모듈 선택 --',
+                'addBtn': '+ 모듈 추가',
+                'preview': 'CSS 코드 미리보기',
+                'copyBtn': '📋 CSS 복사',
+                'copySuccess': '✓ 복사됨!',
+                'emptyWarning': '먼저 기능 모듈을 추가하세요!',
+                'removeBtn': '✕ 삭제',
+                'disabledMsg': '이 모듈은 활성화되어 있습니다. 설정이 필요하지 않습니다.',
+                
+                // 모듈 이름
+                'crosshair': '크로스헤어',
+                'adblock': '광고 숨기기 (AdBlock)',
+                'chat': '채팅방',
+                'hotbar': '핫바 아이템',
+                'health': '체력 바',
+                'menu': '메인 메뉴',
+                'mobile': '모바일 컨트롤',
+                'newbutton': '새 버튼',
+                'mainmenutheme': '메인 메뉴 테마',
+                'settingstheme': '설정 메뉴 테마',
+                'buttontheme': '버튼 테마',
+                'socialbartheme': '소셜 바 테마',
+                'inputtheme': '입력 필드 테마',
+                'inventorytheme': '인벤토리 테마',
+                'shoptheme': '상점 테마',
+                'chartheme': '캐릭터 테마',
+                'loadertheme': '로더 테마',
+                'ingameheadertheme': '게임 내 헤더 테마',
+                'uirequeststheme': 'UI 요청 테마',
+                'hotbartheme': '핫바 테마',
+                'crosshairtheme': '크로스헤어 테마',
+                'chatmessagestheme': '채팅 메시지 테마',
+                'fpstheme': 'FPS 표시 테마',
+                'coordinatetheme': '좌표 UI 테마',
+                'homepagebgtheme': '홈페이지 배경 테마',
+                'texturepacktheme': '텍스처 팩 테마',
+                'everythingmenu': '메인 메뉴 컨테이너',
+                'settingsmenuright': '설정 메뉴 오른쪽',
+                'menucontainer': '메뉴 사이드바',
+                'likebutton': '좋아요 버튼',
+                'uirequest': 'UI 요청',
+                'aurabar': '오라 바',
+                'enchanting': '마법 부여 테이블',
+                'schematic': '원리도',
+                'customgame': '커스텀 게임',
+                'leaderboard': '리더보드',
+                
+                // 입력 레이블
+                'imageUrl': '이미지 URL',
+                'size': '크기 (rem)',
+                'backgroundColor': '배경 색',
+                'maxHeight': '최대 높이 (rem)',
+                'borderRadius': '테두리 반경 (rem)',
+                'borderColor': '테두리 색',
+                'gradientAngle': '그라데이션 각도',
+                'gradientStartColor': '그라데이션 시작 색',
+                'gradientEndColor': '그라데이션 끝 색',
+                'shadowHOffset': '그림자 수평 오프셋 (px)',
+                'shadowVOffset': '그림자 수직 오프셋 (px)',
+                'shadowBlur': '그림자 흐림 반경 (px)',
+                'shadowColor': '그림자 색',
+                'shadowAlpha': '그림자 불투명도',
+                'backgroundGradient': '배경 그라데이션',
+                'shadowEffect': '그림자 효과',
+                'textColor': '텍스트 색',
+                'opacity': '불투명도',
+                'brightness': '밝기 조정 (%)',
+                'backgroundImage': '배경 이미지 (URL)',
+                'borderWidth': '테두리 너비 (px)',
+                'height': '높이 (%)',
+                'padding': '패딩 (rem)',
+                'gap': '간격 (rem)',
+                'fontSize': '글꼴 크기 (rem)',
+                'backgroundSize': '배경 크기',
+                'backgroundRepeat': '배경 반복',
+                'scale': '스케일',
+                'itemFrame': '커스텀 아이템 프레임 (URL)',
+            }
+        };
+
+        // 當前語言
+        let currentLanguage = 'zh-TW';
+
+        // 翻譯函數
+        function t(key) {
+            return TRANSLATIONS[currentLanguage][key] || TRANSLATIONS['zh-TW'][key];
+        }
+
+        // 更新頁面文本
+        function updatePageLanguage() {
+            document.querySelector('.header h1').textContent = t('title');
+            document.querySelector('.header p').textContent = t('subtitle');
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (el.tagName === 'LABEL' && !el.querySelector('select')) {
+                    el.textContent = t(key);
+                }
+            });
+            
+            // 更新面板標題
+            document.querySelectorAll('.panel h2, .output-area h2').forEach((h2, idx) => {
+                if (idx === 0) h2.textContent = '⚙️ ' + t('modules');
+                else h2.textContent = '📋 ' + t('preview');
+            });
+
+            // 更新標籤
+            const label = document.querySelector('.selector-wrapper label');
+            if (label) label.textContent = t('selectModule');
+
+            // 更新按鈕
+            document.querySelector('.add-btn').textContent = t('addBtn');
+            document.querySelector('.copy-btn').textContent = t('copyBtn');
+
+            // 更新 select 選項的 placeholder
+            const firstOption = document.querySelector('#featureSelect option[value=""]');
+            if (firstOption) firstOption.textContent = t('selectOption');
+            
+            // 更新所有 select 選項的名稱
+            const selectOptions = document.querySelectorAll('#featureSelect option[value!=""]');
+            selectOptions.forEach(option => {
+                const key = option.value;
+                if (TRANSLATIONS[currentLanguage][key]) {
+                    // 獲取emoji並保留
+                    const emoji = option.textContent.match(/^[^\s]/)[0];
+                    option.textContent = emoji + ' ' + t(key);
+                }
+            });
+
+            // 更新現有模組卡片的標題
+            const moduleTitles = document.querySelectorAll('.module-title');
+            moduleTitles.forEach(title => {
+                const moduleType = title.dataset.moduleType;
+                if (moduleType && TRANSLATIONS[currentLanguage][moduleType]) {
+                    title.textContent = t(moduleType);
+                }
+            });
+
+            // 更新移除按鈕文本
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(btn => {
+                const btnText = btn.textContent;
+                const emoji = btnText.match(/^[^\s]/)[0]; // 獲取emoji
+                btn.textContent = emoji + ' ' + t('removeBtn');
+            });
+
+            // 更新無輸入模組的提示文本
+            const disabledMsgs = document.querySelectorAll('[data-trans-key="disabledMsg"]');
+            disabledMsgs.forEach(msg => {
+                msg.textContent = t('disabledMsg');
+            });
+            
+            // 重新生成所有模組卡片的標籤
+            regenerateModuleLabels();
+        }
+
+        // 重新生成模組標籤
+        function regenerateModuleLabels() {
+            const labels = document.querySelectorAll('.module-card label');
+            labels.forEach(label => {
+                const transKey = label.dataset.transKey;
+                if (transKey && transKey !== 'unknown' && TRANSLATIONS[currentLanguage][transKey]) {
+                    label.textContent = t(transKey);
+                }
+            });
+        }
+
+        // 獲取翻譯鍵
+        function getTranslationKey(inputDef) {
+            const labelLower = inputDef.label.toLowerCase();
+            
+            // 映射輸入標籤到翻譯鍵
+            const keyMap = {
+                '圖片網址': 'imageUrl',
+                '大小': 'size',
+                '背景顏色': 'backgroundColor',
+                '最大高度': 'maxHeight',
+                '邊框半徑': 'borderRadius',
+                '邊框顏色': 'borderColor',
+                '漸層角度': 'gradientAngle',
+                '漸層起始顏色': 'gradientStartColor',
+                '漸層結束顏色': 'gradientEndColor',
+                '陰影水平偏移': 'shadowHOffset',
+                '陰影垂直偏移': 'shadowVOffset',
+                '陰影模糊半徑': 'shadowBlur',
+                '陰影顏色': 'shadowColor',
+                '陰影透明度': 'shadowAlpha',
+                '背景漸層': 'backgroundGradient',
+                '陰影效果': 'shadowEffect',
+                '文字顏色': 'textColor',
+                '透明度': 'opacity',
+                '亮度調整': 'brightness',
+                '背景圖片': 'backgroundImage',
+                '邊框寬度': 'borderWidth',
+                '高度': 'height',
+                '內邊距': 'padding',
+                '間距': 'gap',
+                '字體大小': 'fontSize',
+                '背景大小': 'backgroundSize',
+                '背景重複': 'backgroundRepeat',
+                '縮放比例': 'scale',
+                '自訂物品框圖片': 'itemFrame',
+                // 簡體中文映射
+                '图片网址': 'imageUrl',
+                '背景色': 'backgroundColor',
+                '边框半径': 'borderRadius',
+                '边框颜色': 'borderColor',
+                '渐层角度': 'gradientAngle',
+                '渐层起始颜色': 'gradientStartColor',
+                '渐层结束颜色': 'gradientEndColor',
+                '阴影水平偏移': 'shadowHOffset',
+                '阴影垂直偏移': 'shadowVOffset',
+                '阴影模糊半径': 'shadowBlur',
+                '阴影颜色': 'shadowColor',
+                '阴影透明度': 'shadowAlpha',
+                '背景渐层': 'backgroundGradient',
+                '阴影效果': 'shadowEffect',
+                '文字颜色': 'textColor',
+                '背景图片': 'backgroundImage',
+                '边框宽度': 'borderWidth',
+                '内边距': 'padding',
+                '间距': 'gap',
+                '字体大小': 'fontSize',
+                '背景大小': 'backgroundSize',
+                '背景重复': 'backgroundRepeat',
+                '缩放比例': 'scale',
+                '自定义物品框图片': 'itemFrame',
+            };
+            
+            // 逐個嘗試匹配
+            for (const [label, key] of Object.entries(keyMap)) {
+                if (inputDef.label.includes(label.slice(0, 3))) {
+                    return key;
+                }
+            }
+            
+            return null;
+        }
+
+        // 語言切換事件監聽
+        document.getElementById('languageSelect').addEventListener('change', function(e) {
+            currentLanguage = e.target.value;
+            localStorage.setItem('preferredLanguage', currentLanguage);
+            updatePageLanguage();
+        });
+
+        // 初始化語言
+        function initLanguage() {
+            const saved = localStorage.getItem('preferredLanguage');
+            if (saved) {
+                currentLanguage = saved;
+                document.getElementById('languageSelect').value = saved;
+            }
+            updatePageLanguage();
+        }
+
         // === 核心配置 (根據你提供的檔案解析) ===
         const FEATURE_CONFIG = {
             crosshair: {
@@ -766,6 +1435,118 @@
                     { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 BLACK" },
                     { label: "間距 (px)", type: "number", cssProp: "gap", suffix: "px" }
                 ]
+            },
+            everythingmenu: {
+                name: "主選單容器 (Everything Menu)",
+                selector: ".EverythingMenuContainer .EverythingMenu",
+                baseCss: "box-shadow: 0 0 15px rgb(19 244 255 / 60%), inset 0 0 25px rgb(0 139 181 / 90%) !important; border-radius: 1rem !important; background-color: #00000000 !important; background-image: linear-gradient(198deg, #37d7ff4d 0%, #05215580 75%) !important; border: 1px solid #23ccffa6 !important;",
+                inputs: [
+                    { label: "漸層角度", type: "range", min: 0, max: 360, cssProp: "background-image", gradientPart: "angle" },
+                    { label: "漸層起始顏色", type: "color", cssProp: "background-image", gradientPart: "startColor" },
+                    { label: "漸層結束顏色", type: "color", cssProp: "background-image", gradientPart: "endColor" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" }
+                ]
+            },
+            settingsmenuright: {
+                name: "設定選單右側 (Settings Menu Right)",
+                selector: ".SettingsMenuRightInner .SettingBox",
+                baseCss: "box-shadow: 0 0 15px rgb(0 28 37 / 60%) !important; border-radius: 1rem !important; background-color: #00000000 !important; background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important; border: 1px solid #23ccffa6 !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(174deg, #2352ad38 0%, #00000038 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 15px rgb(0 28 37 / 60%)" }
+                ]
+            },
+            menucontainer: {
+                name: "選單側邊欄 (Menu Container)",
+                selector: ".Menu .MenuSideBar .MenuSideBarBody .MenuSideBarBodyTab",
+                baseCss: "border: 0px solid #00000000 !important; background-repeat: no-repeat !important; background-size: contain !important; filter: brightness(0.75);",
+                inputs: [
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "亮度調整 (%)", type: "range", min: 0, max: 200, step: 10, cssProp: "filter", format: "brightness({val}%)" },
+                    { label: "背景圖片 (URL)", type: "text", cssProp: "background-image", format: "url('{val}')" }
+                ]
+            },
+            likebutton: {
+                name: "點讚按鈕 (Like Button)",
+                selector: ".LikeButton",
+                baseCss: "border-radius: 0.7rem !important; background-image: linear-gradient(198deg, #ff32329c 0%, #7800008c 75% 75%) !important; border: 1px solid #ff232352 !important;",
+                inputs: [
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "漸層角度", type: "range", min: 0, max: 360, cssProp: "background-image", gradientPart: "angle" },
+                    { label: "漸層起始顏色", type: "color", cssProp: "background-image", gradientPart: "startColor" },
+                    { label: "漸層結束顏色", type: "color", cssProp: "background-image", gradientPart: "endColor" }
+                ]
+            },
+            uirequest: {
+                name: "UI 請求 (UI Requests)",
+                selector: ".UiRequests .UiRequestContainer .UiRequest .UiRequestInner",
+                baseCss: "background-image: linear-gradient(174deg, #0fa9e999 0%, #00375f63 75%) !important; border: 1px solid #23ccffa6 !important; border-radius: 1rem !important; box-shadow: 0 0 15px rgba(19, 243, 255, 0.356), inset 0 0 25px rgba(0, 139, 181, 0.521) !important; background-color: #00000000 !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(174deg, #0fa9e999 0%, #00375f63 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 15px rgba(19, 243, 255, 0.356)" }
+                ]
+            },
+            aurabar: {
+                name: "光環條 (Aura Bar)",
+                selector: ".AuraBarWrapper .AuraBar",
+                baseCss: "background-color: #22313b !important; border: 2px solid #0ea9c2 !important; height: 60% !important; border-radius: 0.5rem !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框寬度 (px)", type: "number", step: 1, cssProp: "border-width", suffix: "px" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "高度 (%)", type: "range", min: 10, max: 100, cssProp: "height", suffix: "%" }
+                ]
+            },
+            enchanting: {
+                name: "附魔台 (Enchanting Table)",
+                selector: ".EnchantingTable .EnchantingTableBody .EnchantingTableLeft .PossibleEnchantments",
+                baseCss: "background-color: #00000000 !important; border: 1px solid #23ccffa6 !important; border-radius: 1rem !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "標題文字顏色", type: "color", cssProp: "color" }
+                ]
+            },
+            schematic: {
+                name: "原理圖 (Schematic)",
+                selector: ".SchematicListContainer, .SchematicThumbnail, .SchematicName",
+                baseCss: "box-shadow: 0 0 10px rgba(3, 77, 102, 0.644) !important; border-radius: 1rem !important; background-color: #00000000 !important; background-image: linear-gradient(174deg, #2352ad38 0%, #00000038 75%) !important; border: 1px solid #23ccffa6 !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(174deg, #2352ad38 0%, #00000038 75%)" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "陰影效果", type: "text", cssProp: "box-shadow", placeholder: "0 0 10px rgba(3, 77, 102, 0.644)" }
+                ]
+            },
+            customgame: {
+                name: "自訂遊戲 (Custom Game)",
+                selector: ".CustomGameListContainer, .CustomGameListInner",
+                baseCss: "background-color: #0e182d82 !important; border-radius: 1rem !important; padding: 1rem !important;",
+                inputs: [
+                    { label: "背景顏色", type: "color", cssProp: "background-color" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "內邊距 (rem)", type: "number", step: 0.1, cssProp: "padding", suffix: "rem" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" }
+                ]
+            },
+            leaderboard: {
+                name: "排行榜 (Leaderboard)",
+                selector: ".LobbyLeaderboardMenu .LobbyLeaderboardContainer .LobbyLeaderboard",
+                baseCss: "border-radius: 1rem !important; background-color: #00000000 !important; border: 0px solid #00000000 !important; background-image: linear-gradient(156deg, #0bb3c963 0%, #001e573f 75%) !important;",
+                inputs: [
+                    { label: "背景漸層", type: "text", cssProp: "background-image", placeholder: "linear-gradient(156deg, #0bb3c963 0%, #001e573f 75%)" },
+                    { label: "邊框半徑 (rem)", type: "number", step: 0.1, cssProp: "border-radius", suffix: "rem" },
+                    { label: "邊框顏色", type: "color", cssProp: "border-color" },
+                    { label: "文字顏色", type: "color", cssProp: "color" }
+                ]
             }
         };
 
@@ -794,13 +1575,17 @@
                 const defaultValue = input.defaultValue || (input.min ? input.min : 0);
                 const inputId = `input-${uniqueId}-${index}`;
                 const valueId = `value-${uniqueId}-${index}`;
+                // 獲取翻譯後的標籤文本
+                const transKey = getTranslationKey(input);
+                const labelText = transKey ? t(transKey) : input.label;
                 inputsHtml += `
                     <div>
-                        <label>${input.label}</label>
+                        <label data-trans-key="${transKey || 'unknown'}">${labelText}</label>
                         <input 
                             id="${inputId}"
                             type="${input.type}" 
                             data-index="${index}" 
+                            data-label="${input.label}"
                             placeholder="${input.placeholder || ''}"
                             value="${defaultValue}"
                             ${input.step ? `step="${input.step}"` : ''}
@@ -815,13 +1600,17 @@
 
             // 處理不需要輸入的模組 (如 Adblock)
             if (config.inputs.length === 0) {
-                inputsHtml = '<p style="font-size:0.8em; color:#888;">此模組已啟用，無須設定。</p>';
+                inputsHtml = '<p style="font-size:0.8em; color:#888;" data-trans-key="disabledMsg">' + t('disabledMsg') + '</p>';
             }
 
+            // 獲取翻譯後的模組名稱
+            const moduleNameTransKey = type; // 使用模組類型作為翻譯鍵
+            const moduleName = TRANSLATIONS[currentLanguage][moduleNameTransKey] || config.name;
+
             card.innerHTML = `
-                <span class="module-title">${config.name}</span>
+                <span class="module-title" data-module-type="${type}">${moduleName}</span>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <button class="remove-btn" onclick="removeModule(${uniqueId})">✕ 移除</button>
+                    <button class="remove-btn" onclick="removeModule(${uniqueId})" data-trans-key="removeBtn">✕ ${t('removeBtn')}</button>
                 </div>
                 ${inputsHtml}
             `;
@@ -950,7 +1739,7 @@
         function copyCSS() {
             const copyText = document.getElementById("finalCss");
             if (copyText.value === "/* CSS 將顯示在此處 */") {
-                alert("請先新增功能模組！");
+                alert(t('emptyWarning'));
                 return;
             }
             copyText.select();
@@ -959,10 +1748,22 @@
             // 視覺反饋
             const copyBtn = event.target;
             const originalText = copyBtn.textContent;
-            copyBtn.textContent = "✓ 已複製！";
+            copyBtn.textContent = t('copySuccess');
             setTimeout(() => {
                 copyBtn.textContent = originalText;
             }, 2000);
+        }
+
+        // 頁面加載時初始化語言
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+        });
+
+        // 如果 DOM 已經加載
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initLanguage);
+        } else {
+            initLanguage();
         }
     </script>
 </body>
